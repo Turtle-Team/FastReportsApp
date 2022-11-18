@@ -51,6 +51,6 @@ class ExportsFragment : Fragment() {
     }
 
     fun clickCard(item: BaseItemType.File){
-        findNavController().navigate(R.id.action_exportsFragment_to_folderItemFragment, bundleOf("aaa" to item.id))
+        findNavController().navigate(R.id.action_exportsFragment_to_exportFolderItemFragment, bundleOf("aaa" to item.id))
     }
 }

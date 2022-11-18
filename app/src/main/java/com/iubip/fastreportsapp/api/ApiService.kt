@@ -4,8 +4,7 @@ import com.iubip.fastreportsapp.model.*
 import com.iubip.fastreportsapp.utils.Constants
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.Headers
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -43,4 +42,16 @@ interface ApiService {
     suspend fun getContentUsers(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
     ): ContentUser
+
+    @GET("rp/v1/Templates/Folder/{id}/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
+    suspend fun getFolderTemplatesById(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    ): ContentFolder
+
+    @GET("rp/v1/Reports/Folder/{id}/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
+    suspend fun getFolderReportsById(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    ): ContentFolder
 }

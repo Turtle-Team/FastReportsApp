@@ -49,6 +49,6 @@ class ReportsFragment : Fragment() {
     }
 
     fun clickCard(item: BaseItemType.File){
-        findNavController().navigate(R.id.action_reportsFragment_to_folderItemFragment, bundleOf("aaa" to item.id))
+        findNavController().navigate(R.id.action_reportsFragment_to_reportFolderItemFragment, bundleOf("aaa" to item.id))
     }
 }

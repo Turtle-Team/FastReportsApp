@@ -17,4 +17,9 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
     suspend fun getApiKeys(): ApiKeys = apiService.getApiKey()
 
     suspend fun getContentGroups(): ContentGroup = apiService.getContentGroups()
+
+    suspend fun getFolderTemplatesByid(id: String): ContentFolder = apiService.getFolderTemplatesById(id = id)
+
+    suspend fun getFolderReportsByid(id: String): ContentFolder = apiService.getFolderReportsById(id = id)
+
 }
