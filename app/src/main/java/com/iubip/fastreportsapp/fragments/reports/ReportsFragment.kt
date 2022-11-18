@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.FragmentReportsBinding
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
+import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.templates.TemplateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +18,7 @@ class ReportsFragment : Fragment() {
 
     private val viewModel by viewModels<ReportsViewModel>()
     private lateinit var binding: FragmentReportsBinding
+    private var reportAdapter = BaseAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,14 +28,18 @@ class ReportsFragment : Fragment() {
 
         viewModel.getContentReport()
 
-        observableData()
-
         return binding.root
     }
 
-    fun observableData(){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.reportsRcView.adapter = reportAdapter
+        observableData()
+    }
+
+    private fun observableData(){
         viewModel.reports.observe(viewLifecycleOwner){
-            binding.textReports.text = it.toString()
+            reportAdapter.submitList(it)
         }
     }
 }
