@@ -4,22 +4,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.ItemBaseBinding
 
 class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
 
-    class FolderViewHolder(private val binding: ItemBaseBinding) :
+    class FileViewHolder(private val binding: ItemBaseBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BaseItemType.Folder) {
+//            binding.icon.drawable = R.drawable.ic_folder
             binding.name.text = item.name
             binding.dateView.text = item.createdTime
             binding.sizeView.text = item.size.toString()
-
         }
-
     }
 
-    class FileViewHolder(private val binding: ItemBaseBinding) :
+    class FolderViewHolder(private val binding: ItemBaseBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BaseItemType.File) {
             binding.name.text = item.name
@@ -29,10 +29,10 @@ class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffuti
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            2 -> FileViewHolder(ItemBaseBinding.inflate(LayoutInflater.from(parent.context),
+            2 -> FolderViewHolder(ItemBaseBinding.inflate(LayoutInflater.from(parent.context),
                 parent,
                 false))
-            1 -> FolderViewHolder(ItemBaseBinding.inflate(LayoutInflater.from(parent.context),
+            1 -> FileViewHolder(ItemBaseBinding.inflate(LayoutInflater.from(parent.context),
                 parent,
                 false))
             else -> throw java.lang.IllegalArgumentException("Invalid ViewType Provided")
@@ -41,8 +41,8 @@ class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffuti
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is FileViewHolder -> holder.bind(currentList[position] as BaseItemType.File)
-            is FolderViewHolder -> holder.bind(currentList[position] as BaseItemType.Folder)
+            is FolderViewHolder -> holder.bind(currentList[position] as BaseItemType.File)
+            is FileViewHolder -> holder.bind(currentList[position] as BaseItemType.Folder)
         }
     }
 
