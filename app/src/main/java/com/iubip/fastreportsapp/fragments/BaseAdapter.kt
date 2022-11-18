@@ -9,7 +9,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.ItemBaseBinding
+import java.time.Instant
+import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.Date
 
 class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
 
@@ -19,29 +23,42 @@ class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffuti
         fun bind(item: BaseItemType.Folder) {
             binding.icon.setImageResource(R.drawable.ic_file)
             binding.name.text = item.name
-            binding.dateView.text = item.editedTime
+
+            val date = item.editedTime
+            binding.dateView.text = date.substring(0..9)
+            
             binding.sizeView.text = item.size.toString()
         }
     }
 
     class FolderViewHolder(private val binding: ItemBaseBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: BaseItemType.File) {
 
             binding.icon.setImageResource(R.drawable.ic_folder)
             binding.name.text = item.name
-            binding.dateView.text = item.createdTime
+            val date = item.editedTime
+            binding.dateView.text = date.substring(0..9)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            2 -> FolderViewHolder(ItemBaseBinding.inflate(LayoutInflater.from(parent.context),
-                parent,
-                false))
-            1 -> FileViewHolder(ItemBaseBinding.inflate(LayoutInflater.from(parent.context),
-                parent,
-                false))
+            2 -> FolderViewHolder(
+                ItemBaseBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+            1 -> FileViewHolder(
+                ItemBaseBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
             else -> throw java.lang.IllegalArgumentException("Invalid ViewType Provided")
         }
     }
