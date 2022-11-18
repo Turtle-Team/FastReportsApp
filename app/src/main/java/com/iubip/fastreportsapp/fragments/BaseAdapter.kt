@@ -1,20 +1,25 @@
 package com.iubip.fastreportsapp.fragments
 
+import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.ItemBaseBinding
+import java.time.LocalTime
 
 class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
 
     class FileViewHolder(private val binding: ItemBaseBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: BaseItemType.Folder) {
             binding.icon.setImageResource(R.drawable.ic_file)
             binding.name.text = item.name
-            binding.dateView.text = item.createdTime
+            binding.dateView.text = item.editedTime
             binding.sizeView.text = item.size.toString()
         }
     }

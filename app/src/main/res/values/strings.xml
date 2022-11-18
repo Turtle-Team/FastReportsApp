@@ -10,4 +10,7 @@
     <string name="users">Пользователи</string>
     <string name="apikeys">API ключи</string>
     <string name="additionally">Дополнительно</string>
+    <string name="name">Название</string>
+    <string name="size">Размер</string>
+    <string name="last_update">Последнее изменение</string>
 </resources>
