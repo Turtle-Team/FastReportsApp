@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.documentsFragment,
                 R.id.templateFragment,
                 R.id.reportsFragment,
                 R.id.exportsFragment,

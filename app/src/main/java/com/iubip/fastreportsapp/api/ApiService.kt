@@ -1,6 +1,8 @@
 package com.iubip.fastreportsapp.api
 
+import com.iubip.fastreportsapp.model.ContentExport
 import com.iubip.fastreportsapp.model.ContentFolder
+import com.iubip.fastreportsapp.model.ContentReport
 import com.iubip.fastreportsapp.model.Folder
 import com.iubip.fastreportsapp.utils.Constants
 import retrofit2.http.GET
@@ -19,4 +21,14 @@ interface ApiService {
     suspend fun getContentFolder(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
     ): ContentFolder
+
+    @GET("rp/v1/Reports/Folder/6377865f5f620ebfce9a07cc/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
+    suspend fun getContentReport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+    ): ContentReport
+
+    @GET("rp/v1/Exports/Folder/6377865f5f620ebfce9a07cd/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
+    suspend fun getContentExport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+    ): ContentExport
 }

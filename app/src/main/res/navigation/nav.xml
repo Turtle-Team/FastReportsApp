@@ -3,26 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/documentsFragment">
+    app:startDestination="@id/templateFragment">
 
     <fragment
-        android:id="@+id/documentsFragment"
-        android:name="com.iubip.fastreportsapp.fragments.documents.DocumentsFragment"
-        android:label="Документы"
-        tools:layout="@layout/fragment_documents" />
-    <fragment
         android:id="@+id/templateFragment"
-        android:name="com.iubip.fastreportsapp.fragments.TemplateFragment"
+        android:name="com.iubip.fastreportsapp.fragments.templates.TemplateFragment"
         android:label="Шаблоны"
         tools:layout="@layout/fragment_template" />
     <fragment
         android:id="@+id/reportsFragment"
-        android:name="com.iubip.fastreportsapp.fragments.ReportsFragment"
+        android:name="com.iubip.fastreportsapp.fragments.reports.ReportsFragment"
         android:label="Отчеты"
         tools:layout="@layout/fragment_reports" />
     <fragment
         android:id="@+id/exportsFragment"
-        android:name="com.iubip.fastreportsapp.fragments.ExportsFragment"
+        android:name="com.iubip.fastreportsapp.fragments.exports.ExportsFragment"
         android:label="Экспорты"
         tools:layout="@layout/fragment_exports" />
 </navigation>
