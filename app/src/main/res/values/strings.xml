@@ -6,4 +6,8 @@
     <string name="templates">Шаблоны</string>
     <string name="reports">Отчеты</string>
     <string name="exports">Экспорты</string>
+    <string name="groups">Группы</string>
+    <string name="users">Пользователи</string>
+    <string name="apikeys">API ключи</string>
+    <string name="additionally">Дополнительно</string>
 </resources>
