@@ -1,6 +1,6 @@
 package com.iubip.fastreportsapp.di
 
-import com.iubip.fastreportsapp.api.ApIService
+import com.iubip.fastreportsapp.api.ApiService
 import com.iubip.fastreportsapp.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -26,7 +26,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApIService {
-        return retrofit.create(ApIService::class.java)
+    fun provideApiService(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 }

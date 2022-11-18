@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.iubip.fastreportsapp.model.ContentFolder
 import com.iubip.fastreportsapp.model.Folder
 import com.iubip.fastreportsapp.repository.FastReportRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,10 +16,10 @@ import javax.inject.Inject
 class DocumentsViewModel @Inject constructor(private val fastReportRepository: FastReportRepository) :
     ViewModel() {
 
-    private val _response = MutableLiveData<Folder>()
-    val response: LiveData<Folder> = _response
+    private val _response = MutableLiveData<ContentFolder>()
+    val response: LiveData<ContentFolder> = _response
 
-    fun getFolder() = viewModelScope.launch(Dispatchers.IO) {
-        _response.postValue(fastReportRepository.getwtf())
+    fun getContentFolder() = viewModelScope.launch(Dispatchers.IO){
+        _response.postValue(fastReportRepository.getContentFolder())
     }
 }

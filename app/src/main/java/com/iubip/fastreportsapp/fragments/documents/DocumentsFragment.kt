@@ -21,7 +21,7 @@ class DocumentsFragment : Fragment() {
     ): View? {
         binding = FragmentDocumentsBinding.inflate(inflater, container, false)
 
-        viewModel.getFolder()
+        viewModel.getContentFolder()
         observableData()
 
         return binding.root
