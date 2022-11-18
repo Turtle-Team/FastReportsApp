@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.FragmentReportsBinding
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
+import com.iubip.fastreportsapp.fragments.BaseItemType
 import com.iubip.fastreportsapp.fragments.templates.TemplateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +21,9 @@ class ReportsFragment : Fragment() {
 
     private val viewModel by viewModels<ReportsViewModel>()
     private lateinit var binding: FragmentReportsBinding
-    private var reportAdapter = BaseAdapter()
+    private var reportAdapter = BaseAdapter(
+        onClick = {clickCard(it)}
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,5 +46,9 @@ class ReportsFragment : Fragment() {
         viewModel.reports.observe(viewLifecycleOwner){
             reportAdapter.submitList(it)
         }
+    }
+
+    fun clickCard(item: BaseItemType.File){
+        findNavController().navigate(R.id.action_reportsFragment_to_folderItemFragment, bundleOf("aaa" to item.id))
     }
 }

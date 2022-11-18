@@ -9,17 +9,29 @@
         android:id="@+id/templateFragment"
         android:name="com.iubip.fastreportsapp.fragments.templates.TemplateFragment"
         android:label="Шаблоны"
-        tools:layout="@layout/fragment_template" />
+        tools:layout="@layout/fragment_template" >
+        <action
+            android:id="@+id/action_templateFragment_to_folderItemFragment"
+            app:destination="@id/folderItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/reportsFragment"
         android:name="com.iubip.fastreportsapp.fragments.reports.ReportsFragment"
         android:label="Отчеты"
-        tools:layout="@layout/fragment_reports" />
+        tools:layout="@layout/fragment_reports" >
+        <action
+            android:id="@+id/action_reportsFragment_to_folderItemFragment"
+            app:destination="@id/folderItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exportsFragment"
         android:name="com.iubip.fastreportsapp.fragments.exports.ExportsFragment"
         android:label="Экспорты"
-        tools:layout="@layout/fragment_exports" />
+        tools:layout="@layout/fragment_exports" >
+        <action
+            android:id="@+id/action_exportsFragment_to_folderItemFragment"
+            app:destination="@id/folderItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/additionallyFragment"
         android:name="com.iubip.fastreportsapp.fragments.additionally.AdditionallyFragment"
@@ -50,4 +62,9 @@
         android:name="com.iubip.fastreportsapp.fragments.users.UsersFragment"
         android:label="Пользователи"
         tools:layout="@layout/fragment_users" />
+    <fragment
+        android:id="@+id/folderItemFragment"
+        android:name="com.iubip.fastreportsapp.FolderItemFragment"
+        android:label="Папка"
+        tools:layout="@layout/fragment_folder_item" />
 </navigation>

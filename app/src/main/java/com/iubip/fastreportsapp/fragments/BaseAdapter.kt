@@ -15,10 +15,11 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
 
-class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
+class BaseAdapter(private val onClick: (item: BaseItemType.File) -> Unit) : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
 
     class FileViewHolder(private val binding: ItemBaseBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: BaseItemType.Folder) {
             binding.icon.setImageResource(R.drawable.ic_file)
@@ -26,12 +27,12 @@ class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffuti
 
             val date = item.editedTime
             binding.dateView.text = date.substring(0..9)
-            
+
             binding.sizeView.text = item.size.toString()
         }
     }
 
-    class FolderViewHolder(private val binding: ItemBaseBinding) :
+    class FolderViewHolder(private val binding: ItemBaseBinding, private val onClick: (item: BaseItemType.File) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: BaseItemType.File) {
@@ -40,6 +41,10 @@ class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffuti
             binding.name.text = item.name
             val date = item.editedTime
             binding.dateView.text = date.substring(0..9)
+
+            binding.itemCard.setOnClickListener {
+                onClick(item)
+            }
         }
     }
 
@@ -50,7 +55,8 @@ class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffuti
                     LayoutInflater.from(parent.context),
                     parent,
                     false
-                )
+                ),
+                onClick
             )
             1 -> FileViewHolder(
                 ItemBaseBinding.inflate(
