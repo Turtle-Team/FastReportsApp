@@ -1,9 +1,6 @@
 package com.iubip.fastreportsapp.api
 
-import com.iubip.fastreportsapp.model.ContentExport
-import com.iubip.fastreportsapp.model.ContentFolder
-import com.iubip.fastreportsapp.model.ContentReport
-import com.iubip.fastreportsapp.model.Folder
+import com.iubip.fastreportsapp.model.*
 import com.iubip.fastreportsapp.utils.Constants
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -31,4 +28,19 @@ interface ApiService {
     suspend fun getContentExport(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
     ): ContentExport
+
+    @GET("manage/v1/ApiKeys")
+    suspend fun getApiKey(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+    ): ApiKeys
+
+    @GET("manage/v1/Subscriptions/6377865f5f620ebfce9a07ce/groups")
+    suspend fun getContentGroups(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+    ): ContentGroup
+
+    @GET("manage/v1/UserSettings")
+    suspend fun getContentUsers(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+    ): ContentUser
 }

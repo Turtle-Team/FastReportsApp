@@ -1,10 +1,7 @@
 package com.iubip.fastreportsapp.repository
 
 import com.iubip.fastreportsapp.api.ApiService
-import com.iubip.fastreportsapp.model.ContentExport
-import com.iubip.fastreportsapp.model.ContentFolder
-import com.iubip.fastreportsapp.model.ContentReport
-import com.iubip.fastreportsapp.model.Folder
+import com.iubip.fastreportsapp.model.*
 import javax.inject.Inject
 
 class FastReportRepository @Inject constructor(private val apiService: ApiService) {
@@ -16,4 +13,8 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
     suspend fun getContentReports(): ContentReport = apiService.getContentReport()
 
     suspend fun getContentExports(): ContentExport = apiService.getContentExport()
+
+    suspend fun getApiKeys(): ApiKeys = apiService.getApiKey()
+
+    suspend fun getContentGroups(): ContentGroup = apiService.getContentGroups()
 }

@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.templateFragment,
                 R.id.reportsFragment,
                 R.id.exportsFragment,
+                R.id.additionallyFragment
             )
         )
 
