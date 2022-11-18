@@ -19,7 +19,7 @@ class ExportFolderItemViewModel @Inject constructor(private val fastReportReposi
     var idFolder: String? = ""
 
     fun getFolderById(id: String) = viewModelScope.launch(Dispatchers.IO) {
-        val list = fastReportRepository.getFolderTemplatesByid(id).files
+        val list = fastReportRepository.getFolderExportsByid(id).files
         val list2 = mutableListOf<BaseItemType>()
 
         list.map {
