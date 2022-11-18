@@ -12,7 +12,7 @@ class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffuti
     class FileViewHolder(private val binding: ItemBaseBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BaseItemType.Folder) {
-//            binding.icon.drawable = R.drawable.ic_folder
+            binding.icon.setImageResource(R.drawable.ic_file)
             binding.name.text = item.name
             binding.dateView.text = item.createdTime
             binding.sizeView.text = item.size.toString()
@@ -22,6 +22,8 @@ class BaseAdapter() : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffuti
     class FolderViewHolder(private val binding: ItemBaseBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BaseItemType.File) {
+
+            binding.icon.setImageResource(R.drawable.ic_folder)
             binding.name.text = item.name
             binding.dateView.text = item.createdTime
         }
