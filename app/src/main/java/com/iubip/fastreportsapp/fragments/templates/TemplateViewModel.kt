@@ -48,7 +48,6 @@ class TemplateViewModel @Inject constructor(private val fastReportRepository: Fa
                 ))
             }
         }
-        Log.e("aaa", list2.toString())
         _response.postValue(list2)
     }
 }
