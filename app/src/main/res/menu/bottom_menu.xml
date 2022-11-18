@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/documents"
+        android:icon="@drawable/ic_document"
+        android:id="@+id/documentsFragment"/>
+
+    <item android:title="@string/templates"
+        android:icon="@drawable/ic_template"
+        android:id="@+id/templateFragment"/>
+
+    <item android:title="@string/reports"
+        android:icon="@drawable/ic_reports"
+        android:id="@+id/reportsFragment"/>
+
+    <item android:title="@string/exports"
+        android:icon="@drawable/ic_exports"
+        android:id="@+id/exportsFragment"/>
+</menu>
