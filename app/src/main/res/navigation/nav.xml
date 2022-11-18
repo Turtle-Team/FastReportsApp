@@ -20,4 +20,34 @@
         android:name="com.iubip.fastreportsapp.fragments.exports.ExportsFragment"
         android:label="Экспорты"
         tools:layout="@layout/fragment_exports" />
+    <fragment
+        android:id="@+id/additionallyFragment"
+        android:name="com.iubip.fastreportsapp.fragments.additionally.AdditionallyFragment"
+        android:label="Дополнительно"
+        tools:layout="@layout/fragment_additionally" >
+        <action
+            android:id="@+id/action_additionallyFragment_to_usersFragment"
+            app:destination="@id/usersFragment" />
+        <action
+            android:id="@+id/action_additionallyFragment_to_groupsFragment"
+            app:destination="@id/groupsFragment" />
+        <action
+            android:id="@+id/action_additionallyFragment_to_apiKeysFragment"
+            app:destination="@id/apiKeysFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/apiKeysFragment"
+        android:name="com.iubip.fastreportsapp.fragments.apikeys.ApiKeysFragment"
+        android:label="API ключи"
+        tools:layout="@layout/fragment_api_keys" />
+    <fragment
+        android:id="@+id/groupsFragment"
+        android:name="com.iubip.fastreportsapp.fragments.groups.GroupsFragment"
+        android:label="Группы"
+        tools:layout="@layout/fragment_groups" />
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.iubip.fastreportsapp.fragments.users.UsersFragment"
+        android:label="Пользователи"
+        tools:layout="@layout/fragment_users" />
 </navigation>

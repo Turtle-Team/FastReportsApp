@@ -12,4 +12,8 @@
     <item android:title="@string/exports"
         android:icon="@drawable/ic_exports"
         android:id="@+id/exportsFragment"/>
+
+    <item android:title="@string/additionally"
+        android:icon="@drawable/ic_additionally"
+        android:id="@+id/additionallyFragment"/>
 </menu>
