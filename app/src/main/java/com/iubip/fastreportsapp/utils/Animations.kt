@@ -6,7 +6,10 @@ import android.view.View
 
 class Animations {
 
-    fun showButtons(value: Boolean, view: View) {
+    fun showButtons(
+        value: Boolean, // true - показать, false - скрыть
+        view: View  // сюда передаёшь вьюшку например (true, binding.floatingButton.createTemplateButton)
+    ) {
         if (value) {
             view.visibility = View.VISIBLE
             view.alpha = 0f

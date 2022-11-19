@@ -7,7 +7,7 @@ data class ContentFolder(
     val take: Int
 )
 
-data class File(
+data class File (
     val id: String,
     val createdTime: String,
     val editedTime: String,
