@@ -18,28 +18,53 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
 
     suspend fun getContentGroups(): ContentGroup = apiService.getContentGroups()
 
-    suspend fun getFolderTemplatesByid(id: String): ContentFolder = apiService.getFolderTemplatesById(id = id)
+    suspend fun getFolderTemplatesByid(id: String): ContentFolder =
+        apiService.getFolderTemplatesById(id = id)
+
+    suspend fun getFolderReportsByid(id: String): ContentFolder =
+        apiService.getFolderReportsById(id = id)
 
     suspend fun getFolderReportsByid(id: String): ContentReport = apiService.getFolderReportsById(id = id)
 
-    suspend fun getFolderExportsByid(id: String): ContentFolder = apiService.getFolderExportsById(id = id)
 
-    suspend fun downloadTemplateFile(): String =  apiService.downloadTemplateFile()
+    suspend fun getFolderExportsByid(id: String): ContentFolder =
+        apiService.getFolderExportsById(id = id)
 
-    suspend fun deleteFolderTemplate(id: String) = kotlin.runCatching { apiService.deleteFolderTemplate(id = id) }
+    suspend fun downloadTemplateFile(): String = apiService.downloadTemplateFile()
 
-    suspend fun deleteFileTemplate(id: String) = kotlin.runCatching { apiService.deleteFileTemplate(id = id) }
+    suspend fun deleteFolderTemplate(id: String) =
+        kotlin.runCatching { apiService.deleteFolderTemplate(id = id) }
 
-    suspend fun deleteFileExport(id: String) = kotlin.runCatching { apiService.deleteFileExport(id = id) }
+    suspend fun deleteFileTemplate(id: String) =
+        kotlin.runCatching { apiService.deleteFileTemplate(id = id) }
 
-    suspend fun deleteFolderExport(id: String) = kotlin.runCatching { apiService.deleteFolderExport(id = id) }
+    suspend fun deleteFileExport(id: String) =
+        kotlin.runCatching { apiService.deleteFileExport(id = id) }
 
-    suspend fun deleteFolderReport(id: String) = kotlin.runCatching { apiService.deleteFolderReport(id = id) }
+    suspend fun deleteFolderExport(id: String) =
+        kotlin.runCatching { apiService.deleteFolderExport(id = id) }
 
-    suspend fun deleteFileReport(id: String) = kotlin.runCatching { apiService.deleteFileReport(id = id) }
+    suspend fun deleteFolderReport(id: String) =
+        kotlin.runCatching { apiService.deleteFolderReport(id = id) }
 
+    suspend fun deleteFileReport(id: String) =
+        kotlin.runCatching { apiService.deleteFileReport(id = id) }
+
+    suspend fun renameFileTemplate(id: String, name: Rename) =
+        kotlin.runCatching { apiService.renameFileTemplate(id = id, name = name) }
+        
     suspend fun renameFileTemplate(id: String, name: String) = kotlin.runCatching { apiService.renameFileTemplate(id = id, name = name) }
 
-    suspend fun createFolderTemplate(name: String) = kotlin.runCatching { apiService.createFolderTemplate(name = name) }
+    suspend fun createFolderTemplate(name: String) =
+        kotlin.runCatching { apiService.createFolderTemplate(name = name) }
+
+    suspend fun copyFileFromTemplate(folderId: String, id: String) =
+        kotlin.runCatching { apiService.copyFileFromTemplate(folderId = folderId, id = id) }
+
+    suspend fun copyFileFromReport(folderId: String, id: String) =
+        kotlin.runCatching { apiService.copyFileFromReport(folderId = folderId, id = id) }
+
+    suspend fun copyFileFromExport(folderId: String, id: String) =
+        kotlin.runCatching { apiService.copyFileFromExport(folderId = folderId, id = id) }
 
 }
