@@ -1,10 +1,13 @@
 package com.iubip.fastreportsapp.fragments.templates
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +17,7 @@ import com.iubip.fastreportsapp.alerts.ExportDialog
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
+import com.iubip.fastreportsapp.utils.Animations
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -28,15 +32,28 @@ class TemplateFragment : Fragment() {
         deleteFolderClick = { deleteFolder(it) },
         deleteFileClick = {deleteFile(it)},
         exportFile = {exportFile(it)}
+
+        deleteFileClick = { deleteFile(it) }
     )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentTemplateBinding.inflate(inflater, container, false)
 
         viewModel.getContentFolder()
+
+        binding.floatingButton.popupButton.setOnClickListener {
+            if (binding.floatingButton.createFolderButton.isVisible) {
+                Animations().showButtons(false, binding.floatingButton.createFolderButton)
+                Animations().showButtons(false, binding.floatingButton.createTemplateButton)
+                Animations().showButtons(false, binding.floatingButton.donwloadTemplateButton)
+            } else {
+                Animations().showButtons(true, binding.floatingButton.createFolderButton)
+                Animations().showButtons(true, binding.floatingButton.createTemplateButton)
+                Animations().showButtons(true, binding.floatingButton.donwloadTemplateButton)            }
+        }
 
         return binding.root
     }
@@ -68,7 +85,7 @@ class TemplateFragment : Fragment() {
         }
     }
 
-    fun deleteFile(item: String){
+    fun deleteFile(item: String) {
         lifecycleScope.launch {
             viewModel.deleteFile(item)
             delay(500)
@@ -79,4 +96,5 @@ class TemplateFragment : Fragment() {
     fun exportFile(item: String){
         ExportDialog().show(parentFragmentManager, "ExportDialog")
     }
+}
 }

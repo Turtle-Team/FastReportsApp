@@ -12,7 +12,10 @@
         android:id="@+id/folderExportsRcView"
         android:layout_width="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:listitem="@layout/item_base" />
 
+    <include
+        android:id="@+id/floating_button"
+        layout="@layout/button_popup" />
 </FrameLayout>
