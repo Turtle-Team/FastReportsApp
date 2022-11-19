@@ -8,16 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.iubip.fastreportsapp.databinding.ItemFolderExportBinding
 import com.iubip.fastreportsapp.fragments.Diffutils
 import com.iubip.fastreportsapp.model.ContentFile
+import com.iubip.fastreportsapp.model.ExportFile
 
-class FolderExportAdapter(private val onClick: (item: ContentFile) -> Unit) :
-    ListAdapter<ContentFile, FolderExportAdapter.FolderHolder>(Diffutils()) {
+class FolderExportAdapter(private val onClick: (item: ExportFile) -> Unit) :
+    ListAdapter<ExportFile, FolderExportAdapter.FolderHolder>(Diffutils()) {
 
     class FolderHolder(
         private val binding: ItemFolderExportBinding,
-        private val onClick: (item: ContentFile) -> Unit,
+        private val onClick: (item: ExportFile) -> Unit,
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ContentFile) {
+        fun bind(item: ExportFile) {
             binding.title.text = item.name
             if (item.type == "File") {
                 binding.itemFolderExport.visibility = View.GONE

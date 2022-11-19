@@ -6,25 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.DialogFragment
-import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.ExportDialogBinding
-import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.utils.Constants
 
-class ExportDialog : DialogFragment(){
+class ExportDialog : DialogFragment() {
 
     private lateinit var binding: ExportDialogBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = ExportDialogBinding.inflate(inflater, container, false)
         binding.selectExport.setOnClickListener {
             showPopupMenu(binding.selectExport)
         }
         binding.next.setOnClickListener {
+            FolderExportDialog.format = binding.selectExport.text.toString()
             FolderExportDialog().show(parentFragmentManager, "FolderExportDialog")
         }
         return binding.root

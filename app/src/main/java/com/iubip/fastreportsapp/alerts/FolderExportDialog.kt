@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import com.google.gson.Gson
 import com.iubip.fastreportsapp.adapters.alerts.FolderExportAdapter
 import com.iubip.fastreportsapp.databinding.FolderExportDialogBinding
-import com.iubip.fastreportsapp.model.ContentFile
+import com.iubip.fastreportsapp.model.ExportFile
+import com.iubip.fastreportsapp.model.FileToExport
 import com.iubip.fastreportsapp.utils.Animations
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +20,13 @@ class FolderExportDialog : DialogFragment() {
     private lateinit var binding: FolderExportDialogBinding
     private val viewModel by viewModels<FolderExportViewModel>()
     private var folderExportAdapter = FolderExportAdapter(onClick = { clickOnFolder(it) })
+
+    companion object {
+        var format = ""
+        var fileId = ""
+        var namefile = ""
+        var idssss = ""
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,11 +39,24 @@ class FolderExportDialog : DialogFragment() {
         binding.folderExportRcView.adapter = folderExportAdapter
         observableData()
 
+        binding.exportButton.setOnClickListener {
+
+
+            viewModel.exportInThisFolder(fileId,
+                Gson().toJson(FileToExport(namefile,
+                    viewModel.idFolder,
+                    format,
+                    "en-GB")))
+            viewModel.getFolderById(idssss)
+
+        }
+
         return binding.root
     }
 
-    private fun clickOnFolder(item: ContentFile) {
+    private fun clickOnFolder(item: ExportFile) {
         viewModel.idFolder = item.id
+        idssss = item.id
         viewModel.nameFolder = item.name
         viewModel.getFolderById(item.id)
     }

@@ -74,7 +74,7 @@ class FolderItemFragment : Fragment() {
         }
     }
 
-    fun exportFile(item: String){
+    fun exportFile(item: BaseItemType.Folder){
 
     }
 

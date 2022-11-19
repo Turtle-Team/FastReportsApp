@@ -1,7 +1,5 @@
 package com.iubip.fastreportsapp.fragments.templates
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.alerts.ExportDialog
+import com.iubip.fastreportsapp.alerts.FolderExportDialog
 import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
@@ -98,7 +97,9 @@ class TemplateFragment : Fragment() {
         }
     }
 
-    fun exportFile(item: String) {
+    fun exportFile(item: BaseItemType.Folder) {
+        FolderExportDialog.namefile = item.name
+        FolderExportDialog.fileId = item.id
         ExportDialog().show(parentFragmentManager, "ExportDialog")
     }
 

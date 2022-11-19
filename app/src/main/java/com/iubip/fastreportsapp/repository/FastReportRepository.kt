@@ -23,13 +23,13 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
 
     suspend fun getFolderReportsByid(id: String): ContentReport = apiService.getFolderReportsById(id = id)
 
-    suspend fun getFolderExportsByid(id: String): ContentFolder =
+    suspend fun getFolderExportsByid(id: String): ContentExport =
         apiService.getFolderExportsById(id = id)
 
     suspend fun downloadTemplateFile(): String = apiService.downloadTemplateFile()
 
     suspend fun deleteFolderTemplate(id: String) =
-        kotlin.runCatching { apiService.deleteFolderTemplate(id = id) }
+        kotlin.runCatching { apiService.deleteFolderTemplate(id = id) }.getOrElse {  }
 
     suspend fun deleteFileTemplate(id: String) =
         kotlin.runCatching { apiService.deleteFileTemplate(id = id) }
@@ -59,5 +59,7 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
 
     suspend fun copyFileFromExport(folderId: String, id: String) =
         kotlin.runCatching { apiService.copyFileFromExport(folderId = folderId, id = id) }
+
+    suspend fun toExportFile(id: String, folder: String)= kotlin.runCatching {apiService.toExportFile(id = id, folder = folder)}
 
 }

@@ -18,14 +18,14 @@ class BaseAdapter(
     private val onClick: (item: BaseItemType.File) -> Unit,
     private val deleteFolderClick: (item: String) -> Unit,
     private val deleteFileClick: (item: String) -> Unit,
-    private val exportFile: (item: String) -> Unit,
+    private val exportFile: (item: BaseItemType.Folder) -> Unit,
     private val renameFile: (item: String) -> Unit,
 ) : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
 
     class FileViewHolder(
         private val binding: ItemBaseBinding,
         private val deleteFileClick: (item: String) -> Unit,
-        private val exportFile: (item: String) -> Unit,
+        private val exportFile: (item: BaseItemType.Folder) -> Unit,
         private val renameFile: (item: String) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -35,7 +35,7 @@ class BaseAdapter(
             binding.name.text = item.name
 
             binding.itemCard.setOnLongClickListener {
-                showPopup(binding.itemCard, item.id)
+                showPopup(binding.itemCard, item)
                 return@setOnLongClickListener true
             }
 
@@ -45,14 +45,14 @@ class BaseAdapter(
             binding.sizeView.text = item.size.toString()
         }
 
-        private fun showPopup(view: View, item1: String) {
+        private fun showPopup(view: View, item1: BaseItemType.Folder) {
             val popup = PopupMenu(view.context, view)
             popup.inflate(R.menu.file_menu)
             popup.setOnMenuItemClickListener { item: MenuItem? ->
                 when (item?.itemId) {
                     R.id.renameFile -> {
                         Toast.makeText(view.context, "rename", Toast.LENGTH_SHORT).show()
-                        renameFile(item1)
+                        renameFile(item1.id)
                     }
                     R.id.exportFile -> {
                         Toast.makeText(view.context, "export", Toast.LENGTH_SHORT).show()
@@ -63,7 +63,7 @@ class BaseAdapter(
                     }
                     R.id.deleteFile -> {
                         Toast.makeText(view.context, "delete", Toast.LENGTH_SHORT).show()
-                        deleteFileClick(item1)
+                        deleteFileClick(item1.id)
                     }
                 }
                 true
