@@ -145,10 +145,13 @@ interface ApiService {
 
 
     // Создание каталогов
-    @POST("rp/v1/Templates/Folder/6377865f5f620ebfce9a07cb/Folder")
+    @POST("rp/v1/Templates/Folder/{id}/Folder")
     suspend fun createFolderTemplate(
+        @Header("Host") host: String = "fastreport.cloud",
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-        @Path("name") name: String
+        @Header("Content-Type") type: String = "application/json",
+        @Path("id") id : String,
+        @Body name: String
     )
 
     @POST("rp/v1/Reports/Folder/6377865f5f620ebfce9a07cb/Folder")

@@ -16,7 +16,7 @@ class FolderItemViewModel @Inject constructor(private val fastReportRepository: 
     ViewModel() {
     private val _folders = MutableLiveData<List<BaseItemType>>()
     val folders: LiveData<List<BaseItemType>> = _folders
-    var idFolder: String? = ""
+    var idFolder: String = ""
 
     fun getFolderById(id: String) = viewModelScope.launch(Dispatchers.IO) {
         val list = fastReportRepository.getFolderTemplatesByid(id).files

@@ -56,8 +56,8 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
 
     suspend fun renameFileExport(id: String, name: String) = kotlin.runCatching { apiService.renameFileExport(id = id, name = name) }
 
-    suspend fun createFolderTemplate(name: String) =
-        kotlin.runCatching { apiService.createFolderTemplate(name = name) }
+    suspend fun createFolderTemplate(id: String, name: String) =
+        kotlin.runCatching { apiService.createFolderTemplate(id = id, name = name) }
 
     suspend fun copyFileFromTemplate(folderId: String, id: String) =
         kotlin.runCatching { apiService.copyFileFromTemplate(folderId = folderId, id = id) }
