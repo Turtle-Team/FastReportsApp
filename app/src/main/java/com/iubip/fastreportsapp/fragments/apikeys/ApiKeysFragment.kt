@@ -31,7 +31,7 @@ class ApiKeysFragment : Fragment() {
         return binding.root
     }
 
-    fun observableData(){
+    private fun observableData(){
         viewModel.apikeys.observe(viewLifecycleOwner){
             binding.textApiKeys.text = it.toString()
         }

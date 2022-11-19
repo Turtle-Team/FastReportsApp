@@ -51,7 +51,6 @@ class TemplateFragment : Fragment() {
                 Animations().showButtons(true, binding.floatingButton.donwloadTemplateButton)            }
         }
 
-
         return binding.root
     }
 
