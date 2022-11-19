@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
+import com.iubip.fastreportsapp.alerts.ExportDialog
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
@@ -25,7 +26,8 @@ class TemplateFragment : Fragment() {
     private var templateAdapter = BaseAdapter(
         onClick = { clickCard(it) },
         deleteFolderClick = { deleteFolder(it) },
-        deleteFileClick = {deleteFile(it)}
+        deleteFileClick = {deleteFile(it)},
+        exportFile = {exportFile(it)}
     )
 
     override fun onCreateView(
@@ -72,5 +74,9 @@ class TemplateFragment : Fragment() {
             delay(500)
             viewModel.getContentFolder()
         }
+    }
+
+    fun exportFile(item: String){
+        ExportDialog().show(parentFragmentManager, "ExportDialog")
     }
 }

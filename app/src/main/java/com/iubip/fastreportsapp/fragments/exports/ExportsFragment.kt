@@ -27,7 +27,8 @@ class ExportsFragment : Fragment() {
     private var exportAdapter = BaseAdapter(
         onClick = { clickCard(it) },
         deleteFolderClick = { deleteFolder(it) },
-        deleteFileClick = { deleteFile(it) }
+        deleteFileClick = { deleteFile(it) },
+        exportFile = {exportFile(it)}
     )
 
     override fun onCreateView(
@@ -76,5 +77,9 @@ class ExportsFragment : Fragment() {
             delay(500)
             viewModel.getContentExport()
         }
+    }
+
+    fun exportFile(item: String){
+
     }
 }

@@ -17,14 +17,16 @@ import com.iubip.fastreportsapp.repository.FastReportRepository
 class BaseAdapter(
     private val onClick: (item: BaseItemType.File) -> Unit,
     private val deleteFolderClick: (item: String) -> Unit,
-    private val deleteFileClick: (item: String) -> Unit
+    private val deleteFileClick: (item: String) -> Unit,
+    private val exportFile: (item: String) -> Unit
 
 ) :
     ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
 
     class FileViewHolder(
         private val binding: ItemBaseBinding,
-        private val deleteFileClick: (item: String) -> Unit
+        private val deleteFileClick: (item: String) -> Unit,
+        private val exportFile: (item: String) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -49,6 +51,10 @@ class BaseAdapter(
             popup.inflate(R.menu.file_menu)
             popup.setOnMenuItemClickListener { item: MenuItem? ->
                 when (item?.itemId) {
+                    R.id.exportFile -> {
+                        Toast.makeText(view.context, "export", Toast.LENGTH_SHORT).show()
+                        exportFile(item1)
+                    }
                     R.id.copyFile -> {
 
                     }
@@ -126,7 +132,7 @@ class BaseAdapter(
                     parent,
                     false
                 ),
-                deleteFileClick
+                deleteFileClick, exportFile
             )
             else -> throw java.lang.IllegalArgumentException("Invalid ViewType Provided")
         }

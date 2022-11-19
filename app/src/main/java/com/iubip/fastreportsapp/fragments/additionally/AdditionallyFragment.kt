@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
+import com.iubip.fastreportsapp.alerts.ExportDialog
 import com.iubip.fastreportsapp.databinding.FragmentAdditionallyBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,7 +43,7 @@ class AdditionallyFragment : Fragment() {
         }
 
         binding.downloadButton.setOnClickListener{
-
+            ExportDialog().show(parentFragmentManager, "ExportDialog")
         }
 
         return binding.root
