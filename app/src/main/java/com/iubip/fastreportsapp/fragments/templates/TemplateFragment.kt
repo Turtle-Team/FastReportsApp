@@ -1,7 +1,5 @@
 package com.iubip.fastreportsapp.fragments.templates
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +12,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
+import com.iubip.fastreportsapp.alerts.CreateFolderDialog
 import com.iubip.fastreportsapp.alerts.ExportDialog
+import com.iubip.fastreportsapp.alerts.FolderExportDialog
 import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
+import com.iubip.fastreportsapp.preferences.PreferencesStore
 import com.iubip.fastreportsapp.utils.Animations
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -37,11 +38,14 @@ class TemplateFragment : Fragment() {
         renameFile = { renameFile(it) }
     )
 
+    private lateinit var preferences: PreferencesStore
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentTemplateBinding.inflate(inflater, container, false)
+        preferences = PreferencesStore(context)
 
         viewModel.getContentFolder()
 
@@ -56,7 +60,7 @@ class TemplateFragment : Fragment() {
                 Animations().showButtons(true, binding.floatingButton.donwloadTemplateButton)
 
                 binding.floatingButton.createFolderButton.setOnClickListener {
-                    viewModel.createFolder(name = "Asdasdasd")
+                    CreateFolderDialog().show(parentFragmentManager, "Create Folder")
                 }
             }
         }
@@ -100,7 +104,9 @@ class TemplateFragment : Fragment() {
         }
     }
 
-    fun exportFile(item: String) {
+    fun exportFile(item: BaseItemType.Folder) {
+        FolderExportDialog.namefile = item.name
+        FolderExportDialog.fileId = item.id
         ExportDialog().show(parentFragmentManager, "ExportDialog")
     }
 

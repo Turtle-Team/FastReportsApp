@@ -80,7 +80,7 @@ class ReportFolderItemFragment : Fragment() {
         }
     }
 
-    fun exportFile(item: String){
+    fun exportFile(item: BaseItemType.Folder){
 
     }
 

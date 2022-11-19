@@ -27,13 +27,13 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
 
     suspend fun getFolderReportsByid(id: String): ContentReport = apiService.getFolderReportsById(id = id)
 
-    suspend fun getFolderExportsByid(id: String): ContentFolder =
+    suspend fun getFolderExportsByid(id: String): ContentExport =
         apiService.getFolderExportsById(id = id)
 
     suspend fun downloadTemplateFile(): String = apiService.downloadTemplateFile()
 
     suspend fun deleteFolderTemplate(id: String) =
-        kotlin.runCatching { apiService.deleteFolderTemplate(id = id) }
+        kotlin.runCatching { apiService.deleteFolderTemplate(id = id) }.getOrElse {  }
 
     suspend fun deleteFileTemplate(id: String) =
         kotlin.runCatching { apiService.deleteFileTemplate(id = id) }
@@ -49,15 +49,16 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
 
     suspend fun deleteFileReport(id: String) =
         kotlin.runCatching { apiService.deleteFileReport(id = id) }
-        
+
     suspend fun renameFileTemplate(id: String, name: String) = kotlin.runCatching { apiService.renameFileTemplate(id = id, name = name) }
 
     suspend fun renameFileReport(id: String, name: String) = kotlin.runCatching { apiService.renameFileReport(id = id, name = name) }
 
     suspend fun renameFileExport(id: String, name: String) = kotlin.runCatching { apiService.renameFileExport(id = id, name = name) }
 
-    suspend fun createFolderTemplate(name: String) =
-        kotlin.runCatching { apiService.createFolderTemplate(name = name) }
+    suspend fun createFolderTemplate(id: String, name: String) =
+        kotlin.runCatching { apiService.createFolderTemplate(id = id, name = name) }
+
 
     suspend fun copyFileFromTemplate(folderId: String, id: String) =
         kotlin.runCatching { apiService.copyFileFromTemplate(folderId = folderId, id = id) }
@@ -67,5 +68,7 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
 
     suspend fun copyFileFromExport(folderId: String, id: String) =
         kotlin.runCatching { apiService.copyFileFromExport(folderId = folderId, id = id) }
+
+    suspend fun toExportFile(id: String, folder: String)= kotlin.runCatching {apiService.toExportFile(id = id, folder = folder)}
 
 }

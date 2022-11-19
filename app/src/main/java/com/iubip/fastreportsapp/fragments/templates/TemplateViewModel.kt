@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.iubip.fastreportsapp.fragments.BaseItemType
-import com.iubip.fastreportsapp.model.Rename
 import com.iubip.fastreportsapp.repository.FastReportRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -66,7 +65,7 @@ class TemplateViewModel @Inject constructor(private val fastReportRepository: Fa
         fastReportRepository.deleteFileTemplate(item)
     }
 
-    fun createFolder(name: String) = viewModelScope.launch(Dispatchers.IO){
-        fastReportRepository.createFolderTemplate(name)
+    fun createFolder(id: String, name: String) = viewModelScope.launch(Dispatchers.IO) {
+        fastReportRepository.createFolderTemplate(id,name)
     }
 }

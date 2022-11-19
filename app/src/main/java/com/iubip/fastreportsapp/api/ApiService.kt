@@ -44,6 +44,7 @@ interface ApiService {
     ): ApiKey
 
 
+
     // Получить содержимое каталога по ID
     @GET("rp/v1/Templates/Folder/{id}/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
     suspend fun getFolderTemplatesById(
@@ -61,7 +62,7 @@ interface ApiService {
     suspend fun getFolderExportsById(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("id") id: String
-    ): ContentFolder
+    ): ContentExport
 
 
     // Загрузка файлов
@@ -113,11 +114,12 @@ interface ApiService {
     )
 
 
+
     // Переименовать файл
     @PUT("rp/v1/Templates/File/{id}/Rename")
     suspend fun renameFileTemplate(
-        @Header("Host") host: String = "fastreport.cloud",
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Header("Host") host: String = "fastreport.cloud",
         @Header("Content-Type") type: String = "application/json",
         @Path("id") id: String,
         @Body name: String
@@ -143,10 +145,13 @@ interface ApiService {
 
 
     // Создание каталогов
-    @POST("rp/v1/Templates/Folder/6377865f5f620ebfce9a07cb/Folder")
+    @POST("rp/v1/Templates/Folder/{id}/Folder")
     suspend fun createFolderTemplate(
+        @Header("Host") host: String = "fastreport.cloud",
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-        @Path("name") name: String
+        @Header("Content-Type") type: String = "application/json",
+        @Path("id") id : String,
+        @Body name: String
     )
 
     @POST("rp/v1/Reports/Folder/6377865f5f620ebfce9a07cb/Folder")
@@ -182,5 +187,15 @@ interface ApiService {
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("folderId") folderId: String,
         @Path("id") id: String
+    )
+
+    // Экспортировать файл
+    @POST("/api/rp/v1/Templates/File/{id}/Export")
+    suspend fun toExportFile(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Header("Host") host: String = "fastreport.cloud",
+        @Header("Content-Type") type: String = "application/json",
+        @Path("id") id: String,
+        @Body folder: String
     )
 }

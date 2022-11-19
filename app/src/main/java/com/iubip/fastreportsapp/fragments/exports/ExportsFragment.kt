@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
+import com.iubip.fastreportsapp.alerts.FolderExportDialog
 import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.alerts.RenameDialogExport
 import com.iubip.fastreportsapp.databinding.FragmentExportsBinding
@@ -82,8 +83,7 @@ class ExportsFragment : Fragment() {
         }
     }
 
-    fun exportFile(item: String){
-
+    fun exportFile(item: BaseItemType.Folder){
     }
 
     fun renameFile(item: String) {
