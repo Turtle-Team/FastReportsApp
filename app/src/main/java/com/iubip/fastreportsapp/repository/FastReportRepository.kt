@@ -14,7 +14,7 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
 
     suspend fun getContentExports(): ContentExport = apiService.getContentExport()
 
-    suspend fun getApiKeys(): ApiKeys = apiService.getApiKey()
+    suspend fun getApiKeys(): ApiKey = apiService.getApiKey()
 
     suspend fun getContentGroups(): ContentGroup = apiService.getContentGroups()
 

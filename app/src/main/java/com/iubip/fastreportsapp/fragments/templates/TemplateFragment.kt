@@ -60,8 +60,6 @@ class TemplateFragment : Fragment() {
             }
         }
 
-
-
         return binding.root
     }
 
