@@ -168,20 +168,20 @@ interface ApiService {
     suspend fun copyFileFromExport(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("folderId") folderId: String,
-        @Path("name") name: String
+        @Path("id") id: String
     )
 
     @POST("rp/v1/Reports/File/{id}/Copy/{folderId}")
     suspend fun copyFileFromReport(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("folderId") folderId: String,
-        @Path("name") name: String
+        @Path("id") id: String
     )
 
     @POST("rp/v1/Templates/File/{id}/Copy/{folderId}")
     suspend fun copyFileFromTemplate(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("folderId") folderId: String,
-        @Path("name") name: String
+        @Path("id") id: String
     )
 }
