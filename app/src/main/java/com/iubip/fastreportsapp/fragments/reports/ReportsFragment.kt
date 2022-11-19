@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.alerts.RenameDialog
+import com.iubip.fastreportsapp.alerts.RenameDialogReport
 import com.iubip.fastreportsapp.databinding.FragmentReportsBinding
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
@@ -83,7 +84,8 @@ class ReportsFragment : Fragment() {
 
     }
 
-    fun renameFile(item: String){
-        RenameDialog().show(parentFragmentManager, "Rename file")
+    fun renameFile(item: String) {
+        RenameDialogReport.nameReports = item
+        RenameDialogReport().show(parentFragmentManager, "Rename file")
     }
 }

@@ -32,8 +32,6 @@ class AdditionallyFragment : Fragment() {
     ): View {
         binding = FragmentAdditionallyBinding.inflate(inflater, container, false)
 
-        viewModel.downloadTemplateFile()
-
 
         binding.groupButton.setOnClickListener {
             findNavController().navigate(R.id.action_additionallyFragment_to_groupsFragment)
@@ -47,10 +45,10 @@ class AdditionallyFragment : Fragment() {
             findNavController().navigate(R.id.action_additionallyFragment_to_apiKeysFragment)
         }
 
-        binding.downloadButton.setOnClickListener{
-            Log.e("RETROFIT", viewModel.response.value.toString())
-//            Download().saveFile(viewModel.response.value.toString(), )
-        }
+//        binding.downloadButton.setOnClickListener{
+////            Log.e("RETROFIT", viewModel.response.value.toString())
+////            Download().saveFile(viewModel.response.value.toString(), )
+//        }
 
         return binding.root
     }
