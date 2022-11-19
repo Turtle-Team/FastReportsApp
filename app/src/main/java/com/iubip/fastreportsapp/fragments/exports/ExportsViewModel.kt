@@ -59,4 +59,8 @@ class ExportsViewModel @Inject constructor(private val fastReportRepository: Fas
     fun deleteFile(item: String) = viewModelScope.launch(Dispatchers.IO) {
         fastReportRepository.deleteFileExport(item)
     }
+
+    fun renameFile(item: String, name: String) = viewModelScope.launch(Dispatchers.IO) {
+        fastReportRepository.renameFileExport(item, name)
+    }
 }
