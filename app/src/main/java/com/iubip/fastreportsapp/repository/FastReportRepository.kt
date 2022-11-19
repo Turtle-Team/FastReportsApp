@@ -1,5 +1,9 @@
 package com.iubip.fastreportsapp.repository
 
+import android.util.Log
+import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import com.iubip.fastreportsapp.alerts.ExportDialog
 import com.iubip.fastreportsapp.api.ApiService
 import com.iubip.fastreportsapp.model.*
 import javax.inject.Inject
@@ -47,6 +51,10 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
         kotlin.runCatching { apiService.deleteFileReport(id = id) }
 
     suspend fun renameFileTemplate(id: String, name: String) = kotlin.runCatching { apiService.renameFileTemplate(id = id, name = name) }
+
+    suspend fun renameFileReport(id: String, name: String) = kotlin.runCatching { apiService.renameFileReport(id = id, name = name) }
+
+    suspend fun renameFileExport(id: String, name: String) = kotlin.runCatching { apiService.renameFileExport(id = id, name = name) }
 
     suspend fun createFolderTemplate(name: String) =
         kotlin.runCatching { apiService.createFolderTemplate(name = name) }

@@ -127,14 +127,20 @@ interface ApiService {
 
     @POST("rp/v1/Exports/File/{id}/Rename")
     suspend fun renameFileExport(
+        @Header("Host") host: String = "fastreport.cloud",
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-        @Path("id") id: String
+        @Header("Content-Type") type: String = "application/json",
+        @Path("id") id: String,
+        @Body name: String
     )
 
     @POST("rp/v1/Reports/Folder/{id}/Rename")
     suspend fun renameFileReport(
+        @Header("Host") host: String = "fastreport.cloud",
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-        @Path("id") id: String
+        @Header("Content-Type") type: String = "application/json",
+        @Path("id") id: String,
+        @Body name: String
     )
 
 

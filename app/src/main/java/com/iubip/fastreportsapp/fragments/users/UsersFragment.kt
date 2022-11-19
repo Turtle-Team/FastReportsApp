@@ -1,21 +1,50 @@
 package com.iubip.fastreportsapp.fragments.users
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.iubip.fastreportsapp.R
+import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
+import com.iubip.fastreportsapp.databinding.FragmentUsersBinding
+import com.iubip.fastreportsapp.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UsersFragment : Fragment() {
+    private lateinit var binding: FragmentUsersBinding
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_users, container, false)
+    ): View {
+        binding = FragmentUsersBinding.inflate(inflater, container, false)
+//        val basic: HashMap<String, String> = HashMap<String, String>()
+//        val host: HashMap<String, String> = HashMap<String, String>()
+//        basic.put("Authorization", Constants.BASIC_AUTH)
+//        host.put("Host", "fastreport.cloud")
+
+//        val headers = hashMapOf<>()
+
+//        binding.webView.loadUrl("https://stackoverflow.com/questions/39939121/android-webview-add-header-to-http-request", )
+
+        val headers: HashMap<String, String> = HashMap<String, String>()
+
+        headers.put("Authorization", Constants.BASIC_AUTH)
+        headers.put("Host", "fastreport.cloud")
+        headers.put("Content-Type", "text/xml")
+
+        binding.webView.settings.javaScriptEnabled = true
+        binding.webView.loadUrl("https://fastreport.cloud/download/t/63792f985f620ebfce9a32a1",headers)
+        binding.webView.webViewClient = WebViewClient()
+
+        return binding.root
     }
 }
