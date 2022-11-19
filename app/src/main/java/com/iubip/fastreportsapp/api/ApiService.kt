@@ -125,7 +125,8 @@ interface ApiService {
     @PUT("rp/v1/Templates/File/{id}/Rename")
     suspend fun renameFileTemplate(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-        @Path("id") id: String
+        @Path("id") id: String,
+        @Body name: Rename
     )
 
     @POST("rp/v1/Exports/File/{id}/Rename")

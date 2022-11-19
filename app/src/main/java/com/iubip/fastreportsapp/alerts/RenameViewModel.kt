@@ -12,7 +12,5 @@ import javax.inject.Inject
 class RenameViewModel @Inject constructor(private val fastReportRepository: FastReportRepository) :
     ViewModel() {
 
-    fun renameFile(item: String) = viewModelScope.launch(Dispatchers.IO) {
-        fastReportRepository.renameFileTemplate(item)
-    }
+
 }

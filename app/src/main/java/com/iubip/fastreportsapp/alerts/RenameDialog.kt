@@ -4,27 +4,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import com.iubip.fastreportsapp.databinding.ExportDialogBinding
+import com.google.gson.Gson
 import com.iubip.fastreportsapp.databinding.RenameDialogBinding
-import com.iubip.fastreportsapp.utils.Constants
+import com.iubip.fastreportsapp.fragments.templates.TemplateViewModel
+import com.iubip.fastreportsapp.model.Rename
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.jar.Attributes.Name
 
-class RenameDialog : DialogFragment(){
+@AndroidEntryPoint
+class RenameDialog : DialogFragment() {
+
+    companion object {
+        var name = ""
+    }
 
     private lateinit var binding: RenameDialogBinding
-    private val viewModel by viewModels<RenameViewModel>()
+    private val viewModel by viewModels<TemplateViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = RenameDialogBinding.inflate(inflater, container, false)
 
-//        viewModel.renameFile()
-
+        binding.next.setOnClickListener {
+            viewModel.renameFile(name, (Rename(binding.nameFileNew.text.toString())))
+        }
         return binding.root
     }
 

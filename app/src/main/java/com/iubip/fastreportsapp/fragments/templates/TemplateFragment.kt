@@ -105,6 +105,7 @@ class TemplateFragment : Fragment() {
     }
 
     fun renameFile(item: String) {
+        RenameDialog.name = item
         RenameDialog().show(parentFragmentManager, "Rename file")
     }
 }
