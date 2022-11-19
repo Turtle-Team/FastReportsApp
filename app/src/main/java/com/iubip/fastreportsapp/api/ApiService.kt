@@ -122,6 +122,7 @@ interface ApiService {
     // Переименовать файл
     @PUT("rp/v1/Templates/File/{id}/Rename")
     suspend fun renameFileTemplate(
+        @Header("Host") host: String = "fastreport.cloud",
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("id") id: String,
         @Body name: Rename
