@@ -97,7 +97,6 @@ interface ApiService {
     )
 
 
-
     // Удалить файл
     @DELETE("rp/v1/Templates/File/{id}")
     suspend fun deleteFileTemplate(
