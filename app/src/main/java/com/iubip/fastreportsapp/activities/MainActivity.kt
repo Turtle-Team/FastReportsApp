@@ -1,7 +1,7 @@
 package com.iubip.fastreportsapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -21,6 +21,9 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.templateFragment,
@@ -33,4 +36,15 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationMenu.setupWithNavController(navController)
     }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when(item.itemId){
+//            android.R.id.home -> {
+//                this.bac
+//            }
+//        }
+//        return true
+//    }
+
+
 }

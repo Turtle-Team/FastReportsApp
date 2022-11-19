@@ -25,9 +25,10 @@ class ReportsFragment : Fragment() {
     private val viewModel by viewModels<ReportsViewModel>()
     private lateinit var binding: FragmentReportsBinding
     private var reportAdapter = BaseAdapter(
-        onClick = {clickCard(it)},
-        deleteFolderClick = {deleteFolder(it)},
-        deleteFileClick = { deleteFile(it) }
+        onClick = { clickCard(it) },
+        deleteFolderClick = { deleteFolder(it) },
+        deleteFileClick = { deleteFile(it) },
+        exportFile = {exportFile(it)}
     )
 
     override fun onCreateView(
@@ -47,14 +48,17 @@ class ReportsFragment : Fragment() {
         observableData()
     }
 
-    private fun observableData(){
-        viewModel.reports.observe(viewLifecycleOwner){
+    private fun observableData() {
+        viewModel.reports.observe(viewLifecycleOwner) {
             reportAdapter.submitList(it)
         }
     }
 
-    fun clickCard(item: BaseItemType.File){
-        findNavController().navigate(R.id.action_reportsFragment_to_reportFolderItemFragment, bundleOf("aaa" to item.id))
+    fun clickCard(item: BaseItemType.File) {
+        findNavController().navigate(
+            R.id.action_reportsFragment_to_reportFolderItemFragment,
+            bundleOf("aaa" to item.id)
+        )
     }
 
     fun deleteFolder(item: String) {
@@ -65,11 +69,15 @@ class ReportsFragment : Fragment() {
         }
     }
 
-    fun deleteFile(item: String){
+    fun deleteFile(item: String) {
         lifecycleScope.launch {
             viewModel.deleteFile(item)
             delay(500)
             viewModel.getContentReport()
         }
+    }
+
+    fun exportFile(item: String){
+
     }
 }

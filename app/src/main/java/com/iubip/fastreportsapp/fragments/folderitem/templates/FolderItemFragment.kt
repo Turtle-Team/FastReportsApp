@@ -22,7 +22,8 @@ class FolderItemFragment : Fragment() {
     private var folderAdapter = BaseAdapter(
         onClick = {clickCard(it)},
         deleteFolderClick = {deleteFolder(it)},
-        deleteFileClick = { deleteFile(it) }
+        deleteFileClick = { deleteFile(it) },
+        exportFile = {exportFile(it)}
     )
 
     override fun onCreateView(
@@ -69,5 +70,9 @@ class FolderItemFragment : Fragment() {
             delay(500)
             viewModel.getFolderById(id = viewModel.idFolder.toString())
         }
+    }
+
+    fun exportFile(item: String){
+
     }
 }

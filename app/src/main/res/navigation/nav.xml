@@ -65,16 +65,16 @@
     <fragment
         android:id="@+id/folderItemFragment"
         android:name="com.iubip.fastreportsapp.fragments.folderitem.templates.FolderItemFragment"
-        android:label="Папка"
+        android:label="Каталог"
         tools:layout="@layout/fragment_folder_item" />
     <fragment
         android:id="@+id/reportFolderItemFragment"
         android:name="com.iubip.fastreportsapp.fragments.folderitem.reports.ReportFolderItemFragment"
-        android:label="fragment_report_folder_item"
+        android:label="Каталог"
         tools:layout="@layout/fragment_report_folder_item" />
     <fragment
         android:id="@+id/exportFolderItemFragment"
         android:name="com.iubip.fastreportsapp.fragments.folderitem.exports.ExportFolderItemFragment"
-        android:label="fragment_export_folder_item"
+        android:label="Каталог"
         tools:layout="@layout/fragment_export_folder_item" />
 </navigation>

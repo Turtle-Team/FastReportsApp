@@ -23,7 +23,8 @@ class ExportFolderItemFragment : Fragment() {
     private var folderAdapter = BaseAdapter(
         onClick = { clickCard(it) },
         deleteFolderClick = { deleteFolder(it) },
-        deleteFileClick = { deleteFile(it) }
+        deleteFileClick = { deleteFile(it) },
+        exportFile = {exportFile(it)}
     )
 
     override fun onCreateView(
@@ -32,8 +33,13 @@ class ExportFolderItemFragment : Fragment() {
     ): View {
         binding = FragmentExportFolderItemBinding.inflate(inflater, container, false)
 
+//        activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
+//        activity?.actionBar?.setDisplayShowHomeEnabled(true)
+
         viewModel.idFolder = arguments?.getString("aaa")
         Log.e("FOLDER ID", viewModel.toString())
+
+//        activity?.actionBar?.title= viewModel.idFolder.toString()
 
         viewModel.getFolderById(viewModel.idFolder.toString())
 
@@ -70,5 +76,9 @@ class ExportFolderItemFragment : Fragment() {
             delay(500)
             viewModel.getFolderById(id = viewModel.idFolder.toString())
         }
+    }
+
+    fun exportFile(item: String){
+
     }
 }

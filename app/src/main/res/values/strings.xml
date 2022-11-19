@@ -12,7 +12,7 @@
     <string name="additionally">Дополнительно</string>
     <string name="name">Название</string>
     <string name="size">Размер</string>
-    <string name="last_update">Последнее изменение</string>
+    <string name="last_update">Послед изменение</string>
     <string name="delete">Удалить</string>
     <string name="rename">Переименовать</string>
     <string name="create_folder">Создать папку</string>
@@ -21,4 +21,5 @@
     <string name="download_report">Загрузить отчет</string>
     <string name="copy">Копировать</string>
     <string name="export">Экспортировать</string>
+    <string name="select_export">Выбор экспорта</string>
 </resources>
