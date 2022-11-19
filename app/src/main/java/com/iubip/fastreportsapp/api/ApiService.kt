@@ -44,7 +44,6 @@ interface ApiService {
     ): ApiKey
 
 
-
     // Получить содержимое каталога по ID
     @GET("rp/v1/Templates/Folder/{id}/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
     suspend fun getFolderTemplatesById(
@@ -65,8 +64,6 @@ interface ApiService {
     ): ContentFolder
 
 
-
-
     // Загрузка файлов
     @Headers("Content-Type: text/xml")
     @GET("https://fastreport.cloud/download/t/6378b5485f620ebfce9a2116")
@@ -74,7 +71,6 @@ interface ApiService {
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
 //        @Path("id") id: String
     ): String
-
 
 
     // Удалить каталог
@@ -97,7 +93,6 @@ interface ApiService {
     )
 
 
-
     // Удалить файл
     @DELETE("rp/v1/Templates/File/{id}")
     suspend fun deleteFileTemplate(
@@ -116,7 +111,6 @@ interface ApiService {
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("id") id: String
     )
-
 
 
     // Переименовать файл
@@ -142,8 +136,6 @@ interface ApiService {
     )
 
 
-
-
     // Создание каталогов
     @POST("rp/v1/Templates/Folder/6377865f5f620ebfce9a07cb/Folder")
     suspend fun createFolderTemplate(
@@ -162,7 +154,6 @@ interface ApiService {
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("name") name: String
     )
-
 
 
     // Скопировать файл в выбранный каталог
