@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TemplateFragment : Fragment() {
@@ -20,7 +23,9 @@ class TemplateFragment : Fragment() {
     private val viewModel by viewModels<TemplateViewModel>()
     private lateinit var binding: FragmentTemplateBinding
     private var templateAdapter = BaseAdapter(
-        onClick = {clickCard(it)}
+        onClick = { clickCard(it) },
+        deleteFolderClick = { deleteFolder(it) },
+        deleteFileClick = {deleteFile(it)}
     )
 
     override fun onCreateView(
@@ -40,13 +45,32 @@ class TemplateFragment : Fragment() {
         observableData()
     }
 
-    private fun observableData(){
-        viewModel.response.observe(viewLifecycleOwner){
+    private fun observableData() {
+        viewModel.response.observe(viewLifecycleOwner) {
             templateAdapter.submitList(it)
         }
     }
 
-    fun clickCard(item: BaseItemType.File){
-        findNavController().navigate(R.id.action_templateFragment_to_folderItemFragment, bundleOf("aaa" to item.id))
+    fun clickCard(item: BaseItemType.File) {
+        findNavController().navigate(
+            R.id.action_templateFragment_to_folderItemFragment,
+            bundleOf("aaa" to item.id)
+        )
+    }
+
+    fun deleteFolder(item: String) {
+        lifecycleScope.launch {
+            viewModel.deleteFolder(item)
+            delay(500)
+            viewModel.getContentFolder()
+        }
+    }
+
+    fun deleteFile(item: String){
+        lifecycleScope.launch {
+            viewModel.deleteFile(item)
+            delay(500)
+            viewModel.getContentFolder()
+        }
     }
 }

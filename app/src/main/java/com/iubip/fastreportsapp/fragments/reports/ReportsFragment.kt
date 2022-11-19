@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.FragmentReportsBinding
@@ -15,6 +16,8 @@ import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
 import com.iubip.fastreportsapp.fragments.templates.TemplateViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ReportsFragment : Fragment() {
@@ -22,7 +25,9 @@ class ReportsFragment : Fragment() {
     private val viewModel by viewModels<ReportsViewModel>()
     private lateinit var binding: FragmentReportsBinding
     private var reportAdapter = BaseAdapter(
-        onClick = {clickCard(it)}
+        onClick = {clickCard(it)},
+        deleteFolderClick = {deleteFolder(it)},
+        deleteFileClick = { deleteFile(it) }
     )
 
     override fun onCreateView(
@@ -50,5 +55,21 @@ class ReportsFragment : Fragment() {
 
     fun clickCard(item: BaseItemType.File){
         findNavController().navigate(R.id.action_reportsFragment_to_reportFolderItemFragment, bundleOf("aaa" to item.id))
+    }
+
+    fun deleteFolder(item: String) {
+        lifecycleScope.launch {
+            viewModel.deleteFolder(item)
+            delay(500)
+            viewModel.getContentReport()
+        }
+    }
+
+    fun deleteFile(item: String){
+        lifecycleScope.launch {
+            viewModel.deleteFile(item)
+            delay(500)
+            viewModel.getContentReport()
+        }
     }
 }
