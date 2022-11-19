@@ -41,7 +41,7 @@ interface ApiService {
     @GET("manage/v1/ApiKeys")
     suspend fun getApiKey(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-    ): ApiKeys
+    ): ApiKey
 
 
 
@@ -116,8 +116,6 @@ interface ApiService {
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("id") id: String
     )
-
-
 
 
 
