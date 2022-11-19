@@ -56,7 +56,7 @@ interface ApiService {
     suspend fun getFolderReportsById(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("id") id: String
-    ): ContentFolder
+    ): ContentReport
 
     @GET("rp/v1/Exports/Folder/{id}/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
     suspend fun getFolderExportsById(
@@ -123,8 +123,9 @@ interface ApiService {
     @PUT("rp/v1/Templates/File/{id}/Rename")
     suspend fun renameFileTemplate(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Header("Content-Type") type: String = "application/json",
         @Path("id") id: String,
-        @Body name: Rename
+        @Body name: String
     )
 
     @POST("rp/v1/Exports/File/{id}/Rename")
@@ -168,20 +169,20 @@ interface ApiService {
     suspend fun copyFileFromExport(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("folderId") folderId: String,
-        @Path("name") name: String
+        @Path("id") id: String
     )
 
     @POST("rp/v1/Reports/File/{id}/Copy/{folderId}")
     suspend fun copyFileFromReport(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("folderId") folderId: String,
-        @Path("name") name: String
+        @Path("id") id: String
     )
 
     @POST("rp/v1/Templates/File/{id}/Copy/{folderId}")
     suspend fun copyFileFromTemplate(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("folderId") folderId: String,
-        @Path("name") name: String
+        @Path("id") id: String
     )
 }

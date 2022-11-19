@@ -20,16 +20,14 @@ class BaseAdapter(
     private val deleteFileClick: (item: String) -> Unit,
     private val exportFile: (item: String) -> Unit,
     private val renameFile: (item: String) -> Unit,
-) :
-    ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
+) : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
 
     class FileViewHolder(
         private val binding: ItemBaseBinding,
         private val deleteFileClick: (item: String) -> Unit,
         private val exportFile: (item: String) -> Unit,
         private val renameFile: (item: String) -> Unit,
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: BaseItemType.Folder) {
