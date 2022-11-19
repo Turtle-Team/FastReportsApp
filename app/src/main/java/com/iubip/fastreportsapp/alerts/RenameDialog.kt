@@ -32,7 +32,7 @@ class RenameDialog : DialogFragment() {
         binding = RenameDialogBinding.inflate(inflater, container, false)
 
         binding.next.setOnClickListener {
-            viewModel.renameFile(name, (Rename(binding.nameFileNew.text.toString())))
+            viewModel.renameFile(name, (Gson().toJson(Rename(binding.nameFileNew.text.toString()))))
         }
         return binding.root
     }

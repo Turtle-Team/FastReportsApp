@@ -56,7 +56,7 @@ interface ApiService {
     suspend fun getFolderReportsById(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("id") id: String
-    ): ContentFolder
+    ): ContentReport
 
     @GET("rp/v1/Exports/Folder/{id}/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
     suspend fun getFolderExportsById(
@@ -124,8 +124,9 @@ interface ApiService {
     suspend fun renameFileTemplate(
         @Header("Host") host: String = "fastreport.cloud",
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Header("Content-Type") type: String = "application/json",
         @Path("id") id: String,
-        @Body name: Rename
+        @Body name: String
     )
 
     @POST("rp/v1/Exports/File/{id}/Rename")
