@@ -33,8 +33,13 @@ class ExportFolderItemFragment : Fragment() {
     ): View {
         binding = FragmentExportFolderItemBinding.inflate(inflater, container, false)
 
+//        activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
+//        activity?.actionBar?.setDisplayShowHomeEnabled(true)
+
         viewModel.idFolder = arguments?.getString("aaa")
         Log.e("FOLDER ID", viewModel.toString())
+
+//        activity?.actionBar?.title= viewModel.idFolder.toString()
 
         viewModel.getFolderById(viewModel.idFolder.toString())
 
