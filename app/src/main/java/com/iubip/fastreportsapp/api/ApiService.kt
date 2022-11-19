@@ -55,9 +55,15 @@ interface ApiService {
         @Path("id") id: String
     ): ContentFolder
 
-    @GET("https://fastreport.cloud/api/rp/v1/Exports/Folder/{id}/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
+    @GET("rp/v1/Exports/Folder/{id}/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
     suspend fun getFolderExportsById(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("id") id: String
     ): ContentFolder
+
+    @GET("download/r/6377e94d5f620ebfce9a0d26/thumbnail")
+    suspend fun downloadTemplateFile(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+//        @Path("id") id: String
+    ): String
 }

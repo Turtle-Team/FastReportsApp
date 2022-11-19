@@ -1,19 +1,27 @@
 package com.iubip.fastreportsapp.fragments.additionally
 
+import android.app.DownloadManager
+import android.content.Context
+import android.content.Context.DOWNLOAD_SERVICE
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.FragmentAdditionallyBinding
-import com.iubip.fastreportsapp.databinding.FragmentReportsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class AdditionallyFragment : Fragment() {
 
     private lateinit var binding: FragmentAdditionallyBinding
+    private val viewModel by viewModels<AdditionallyViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +39,10 @@ class AdditionallyFragment : Fragment() {
 
         binding.apikeyButton.setOnClickListener {
             findNavController().navigate(R.id.action_additionallyFragment_to_apiKeysFragment)
+        }
+
+        binding.downloadButton.setOnClickListener{
+
         }
 
         return binding.root

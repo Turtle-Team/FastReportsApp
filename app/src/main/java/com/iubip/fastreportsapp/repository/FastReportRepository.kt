@@ -23,4 +23,6 @@ class FastReportRepository @Inject constructor(private val apiService: ApiServic
     suspend fun getFolderReportsByid(id: String): ContentFolder = apiService.getFolderReportsById(id = id)
 
     suspend fun getFolderExportsByid(id: String): ContentFolder = apiService.getFolderExportsById(id = id)
+
+    suspend fun downloadTemplateFile(): String = apiService.downloadTemplateFile()
 }

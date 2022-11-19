@@ -13,4 +13,6 @@
     <string name="name">Название</string>
     <string name="size">Размер</string>
     <string name="last_update">Последнее изменение</string>
+    <string name="delete">Удалить</string>
+    <string name="rename">Переименовать</string>
 </resources>
