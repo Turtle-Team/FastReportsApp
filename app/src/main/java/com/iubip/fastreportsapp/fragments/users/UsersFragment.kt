@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -26,6 +27,7 @@ class UsersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentUsersBinding.inflate(inflater, container, false)
+
 //        val basic: HashMap<String, String> = HashMap<String, String>()
 //        val host: HashMap<String, String> = HashMap<String, String>()
 //        basic.put("Authorization", Constants.BASIC_AUTH)
@@ -43,6 +45,29 @@ class UsersFragment : Fragment() {
 
         binding.webView.settings.javaScriptEnabled = true
         binding.webView.loadUrl("https://fastreport.cloud/download/t/63792f985f620ebfce9a32a1",headers)
+
+
+        val headers: HashMap<String, String> = HashMap<String, String>()
+        headers["Authorization"] = Constants.BASIC_AUTH
+        headers["Host"] = "fastreport.cloud"
+
+
+        binding.webView.webChromeClient = WebChromeClient()
+        binding.webView.settings.javaScriptEnabled = true
+
+        binding.webView.webViewClient = object : WebViewClient(){
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                view?.loadUrl("https://fastreport.cloud/download/t/6379589b5f620ebfce9a4358", headers)
+                return true
+            }
+        }
+        binding.webView.loadUrl("https://fastreport.cloud/download/t/6379589b5f620ebfce9a4358", headers)
+
+
+
         binding.webView.webViewClient = WebViewClient()
 
         return binding.root
