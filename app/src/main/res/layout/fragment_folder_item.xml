@@ -9,6 +9,10 @@
 
     <include layout="@layout/item_header" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/folderRcView"
         android:layout_width="match_parent"
@@ -16,4 +20,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_base" />
 
+        <include
+            android:id="@+id/floating_button"
+            layout="@layout/button_popup"/>
+    </FrameLayout>
 </LinearLayout>

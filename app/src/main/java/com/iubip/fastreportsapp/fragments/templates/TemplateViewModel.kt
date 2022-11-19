@@ -54,7 +54,7 @@ class TemplateViewModel @Inject constructor(private val fastReportRepository: Fa
         _response.postValue(list2)
     }
 
-    fun renameFile(item: String, name: Rename) = viewModelScope.launch(Dispatchers.IO) {
+    fun renameFile(item: String, name: String) = viewModelScope.launch(Dispatchers.IO) {
         fastReportRepository.renameFileTemplate(item, name)
     }
 
