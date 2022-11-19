@@ -52,4 +52,11 @@ class ExportsViewModel @Inject constructor(private val fastReportRepository: Fas
         }
         _exports.postValue(list2)
     }
+    fun deleteFolder(item: String) = viewModelScope.launch(Dispatchers.IO) {
+        fastReportRepository.deleteFolderExport(item)
+    }
+
+    fun deleteFile(item: String) = viewModelScope.launch(Dispatchers.IO) {
+        fastReportRepository.deleteFileExport(item)
+    }
 }

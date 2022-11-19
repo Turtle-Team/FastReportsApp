@@ -1,11 +1,9 @@
 package com.iubip.fastreportsapp.fragments.templates
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.ListAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
 import com.iubip.fastreportsapp.repository.FastReportRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,29 +23,41 @@ class TemplateViewModel @Inject constructor(private val fastReportRepository: Fa
 
         list.map {
             if (it.type == "File") {
-                list2.add(BaseItemType.Folder(
-                    createdTime = it.createdTime,
-                    editedTime = it.editedTime,
-                    id = it.id,
-                    name = it.name,
-                    size = it.size,
-                    status = it.status,
-                    statusReason = it.statusReason,
-                    type = it.type
-                ))
+                list2.add(
+                    BaseItemType.Folder(
+                        createdTime = it.createdTime,
+                        editedTime = it.editedTime,
+                        id = it.id,
+                        name = it.name,
+                        size = it.size,
+                        status = it.status,
+                        statusReason = it.statusReason,
+                        type = it.type
+                    )
+                )
             } else {
-                list2.add(BaseItemType.File(
-                    createdTime = it.createdTime,
-                    editedTime = it.editedTime,
-                    id = it.id,
-                    name = it.name,
-                    size = it.size,
-                    status = it.status,
-                    statusReason = it.statusReason,
-                    type = it.type
-                ))
+                list2.add(
+                    BaseItemType.File(
+                        createdTime = it.createdTime,
+                        editedTime = it.editedTime,
+                        id = it.id,
+                        name = it.name,
+                        size = it.size,
+                        status = it.status,
+                        statusReason = it.statusReason,
+                        type = it.type
+                    )
+                )
             }
         }
         _response.postValue(list2)
+    }
+
+    fun deleteFolder(item: String) = viewModelScope.launch(Dispatchers.IO) {
+        fastReportRepository.deleteFolderTemplate(item)
+    }
+
+    fun deleteFile(item: String) = viewModelScope.launch(Dispatchers.IO) {
+        fastReportRepository.deleteFileTemplate(item)
     }
 }

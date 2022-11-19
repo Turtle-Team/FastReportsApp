@@ -51,4 +51,12 @@ class ReportFolderItemViewModel @Inject constructor(private val fastReportReposi
         }
         _folders.postValue(list2)
     }
+
+    fun deleteFolder(item: String) = viewModelScope.launch(Dispatchers.IO) {
+        fastReportRepository.deleteFolderReport(item)
+    }
+
+    fun deleteFile(item: String) = viewModelScope.launch(Dispatchers.IO) {
+        fastReportRepository.deleteFileReport(item)
+    }
 }

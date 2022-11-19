@@ -2,6 +2,7 @@ package com.iubip.fastreportsapp.api
 
 import com.iubip.fastreportsapp.model.*
 import com.iubip.fastreportsapp.utils.Constants
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -66,4 +67,40 @@ interface ApiService {
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
 //        @Path("id") id: String
     ): String
+
+    @DELETE("rp/v1/Templates/Folder/{id}")
+    suspend fun deleteFolderTemplate(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+    @DELETE("rp/v1/Templates/File/{id}")
+    suspend fun deleteFileTemplate(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+    @DELETE("rp/v1/Exports/File/{id}")
+    suspend fun deleteFileExport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+    @DELETE("rp/v1/Exports/Folder/{id}")
+    suspend fun deleteFolderExport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+    @DELETE("rp/v1/Reports/File/{id}")
+    suspend fun deleteFileReport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+    @DELETE("rp/v1/Reports/Folder/{id}")
+    suspend fun deleteFolderReport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
 }
