@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.databinding.FragmentFolderItemBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
@@ -23,7 +24,8 @@ class FolderItemFragment : Fragment() {
         onClick = {clickCard(it)},
         deleteFolderClick = {deleteFolder(it)},
         deleteFileClick = { deleteFile(it) },
-        exportFile = {exportFile(it)}
+        exportFile = {exportFile(it)},
+        renameFile = {renameFile(it)}
     )
 
     override fun onCreateView(
@@ -74,5 +76,9 @@ class FolderItemFragment : Fragment() {
 
     fun exportFile(item: String){
 
+    }
+
+    fun renameFile(item: String){
+        RenameDialog().show(parentFragmentManager, "Rename file")
     }
 }

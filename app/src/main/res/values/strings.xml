@@ -22,4 +22,6 @@
     <string name="copy">Копировать</string>
     <string name="export">Экспортировать</string>
     <string name="select_export">Выбор экспорта</string>
+    <string name="name_file">Наименование</string>
+    <string name="rename2">Переименование</string>
 </resources>

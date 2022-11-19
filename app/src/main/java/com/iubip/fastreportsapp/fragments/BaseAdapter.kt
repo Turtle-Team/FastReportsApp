@@ -18,15 +18,16 @@ class BaseAdapter(
     private val onClick: (item: BaseItemType.File) -> Unit,
     private val deleteFolderClick: (item: String) -> Unit,
     private val deleteFileClick: (item: String) -> Unit,
-    private val exportFile: (item: String) -> Unit
-
+    private val exportFile: (item: String) -> Unit,
+    private val renameFile: (item: String) -> Unit,
 ) :
     ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
 
     class FileViewHolder(
         private val binding: ItemBaseBinding,
         private val deleteFileClick: (item: String) -> Unit,
-        private val exportFile: (item: String) -> Unit
+        private val exportFile: (item: String) -> Unit,
+        private val renameFile: (item: String) -> Unit,
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -51,6 +52,10 @@ class BaseAdapter(
             popup.inflate(R.menu.file_menu)
             popup.setOnMenuItemClickListener { item: MenuItem? ->
                 when (item?.itemId) {
+                    R.id.renameFile -> {
+                        Toast.makeText(view.context, "rename", Toast.LENGTH_SHORT).show()
+                        renameFile(item1)
+                    }
                     R.id.exportFile -> {
                         Toast.makeText(view.context, "export", Toast.LENGTH_SHORT).show()
                         exportFile(item1)
@@ -61,9 +66,6 @@ class BaseAdapter(
                     R.id.deleteFile -> {
                         Toast.makeText(view.context, "delete", Toast.LENGTH_SHORT).show()
                         deleteFileClick(item1)
-                    }
-                    R.id.renameFile -> {
-                        Toast.makeText(view.context, "rename", Toast.LENGTH_SHORT).show()
                     }
                 }
                 true
@@ -132,7 +134,7 @@ class BaseAdapter(
                     parent,
                     false
                 ),
-                deleteFileClick, exportFile
+                deleteFileClick, exportFile, renameFile
             )
             else -> throw java.lang.IllegalArgumentException("Invalid ViewType Provided")
         }
