@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.alerts.ExportDialog
+import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
@@ -30,10 +31,9 @@ class TemplateFragment : Fragment() {
     private var templateAdapter = BaseAdapter(
         onClick = { clickCard(it) },
         deleteFolderClick = { deleteFolder(it) },
-        deleteFileClick = {deleteFile(it)},
-        exportFile = {exportFile(it)}
-
-        deleteFileClick = { deleteFile(it) }
+        deleteFileClick = { deleteFile(it) },
+        exportFile = { exportFile(it) },
+        renameFile = { renameFile(it) }
     )
 
     override fun onCreateView(
@@ -52,8 +52,15 @@ class TemplateFragment : Fragment() {
             } else {
                 Animations().showButtons(true, binding.floatingButton.createFolderButton)
                 Animations().showButtons(true, binding.floatingButton.createTemplateButton)
-                Animations().showButtons(true, binding.floatingButton.donwloadTemplateButton)            }
+                Animations().showButtons(true, binding.floatingButton.donwloadTemplateButton)
+
+                binding.floatingButton.createFolderButton.setOnClickListener {
+                    viewModel.createFolder(name = "Asdasdasd")
+                }
+            }
         }
+
+
 
         return binding.root
     }
@@ -93,8 +100,11 @@ class TemplateFragment : Fragment() {
         }
     }
 
-    fun exportFile(item: String){
+    fun exportFile(item: String) {
         ExportDialog().show(parentFragmentManager, "ExportDialog")
     }
-}
+
+    fun renameFile(item: String) {
+        RenameDialog().show(parentFragmentManager, "Rename file")
+    }
 }

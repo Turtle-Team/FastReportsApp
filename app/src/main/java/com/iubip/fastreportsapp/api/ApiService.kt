@@ -2,19 +2,11 @@ package com.iubip.fastreportsapp.api
 
 import com.iubip.fastreportsapp.model.*
 import com.iubip.fastreportsapp.utils.Constants
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("rp/v1/Templates/Folder/637799b25f620ebfce9a08ec")
-    suspend fun getFolder(
-        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-    ): Folder
-
+    // Получить все содержимое каталога
     @GET("rp/v1/Templates/Folder/6377865f5f620ebfce9a07cb/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
     suspend fun getContentFolder(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
@@ -30,10 +22,10 @@ interface ApiService {
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
     ): ContentExport
 
-    @GET("manage/v1/ApiKeys")
-    suspend fun getApiKey(
+    @GET("rp/v1/Templates/Folder/637799b25f620ebfce9a08ec")
+    suspend fun getFolder(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-    ): ApiKeys
+    ): Folder
 
     @GET("manage/v1/Subscriptions/6377865f5f620ebfce9a07ce/groups")
     suspend fun getContentGroups(
@@ -45,6 +37,15 @@ interface ApiService {
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
     ): ContentUser
 
+
+    @GET("manage/v1/ApiKeys")
+    suspend fun getApiKey(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+    ): ApiKeys
+
+
+
+    // Получить содержимое каталога по ID
     @GET("rp/v1/Templates/Folder/{id}/ListFolderAndFiles?skip=0&take=24&orderBy=None&desc=false&searchPattern=")
     suspend fun getFolderTemplatesById(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
@@ -63,38 +64,28 @@ interface ApiService {
         @Path("id") id: String
     ): ContentFolder
 
-    @GET("download/r/6377e94d5f620ebfce9a0d26/thumbnail")
+
+
+
+    // Загрузка файлов
+    @Headers("Content-Type: text/xml")
+    @GET("https://fastreport.cloud/download/t/6378b5485f620ebfce9a2116")
     suspend fun downloadTemplateFile(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
 //        @Path("id") id: String
     ): String
 
+
+
+    // Удалить каталог
     @DELETE("rp/v1/Templates/Folder/{id}")
     suspend fun deleteFolderTemplate(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("id") id: String
     )
 
-    @DELETE("rp/v1/Templates/File/{id}")
-    suspend fun deleteFileTemplate(
-        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-        @Path("id") id: String
-    )
-
-    @DELETE("rp/v1/Exports/File/{id}")
-    suspend fun deleteFileExport(
-        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-        @Path("id") id: String
-    )
-
     @DELETE("rp/v1/Exports/Folder/{id}")
     suspend fun deleteFolderExport(
-        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
-        @Path("id") id: String
-    )
-
-    @DELETE("rp/v1/Reports/File/{id}")
-    suspend fun deleteFileReport(
         @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
         @Path("id") id: String
     )
@@ -106,4 +97,92 @@ interface ApiService {
     )
 
 
+
+    // Удалить файл
+    @DELETE("rp/v1/Templates/File/{id}")
+    suspend fun deleteFileTemplate(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+    @DELETE("rp/v1/Reports/File/{id}")
+    suspend fun deleteFileReport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+    @DELETE("rp/v1/Exports/File/{id}")
+    suspend fun deleteFileExport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+
+
+
+
+    // Переименовать файл
+    @PUT("rp/v1/Templates/File/{id}/Rename")
+    suspend fun renameFileTemplate(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+    @POST("rp/v1/Exports/File/{id}/Rename")
+    suspend fun renameFileExport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+    @POST("rp/v1/Reports/Folder/{id}/Rename")
+    suspend fun renameFileReport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("id") id: String
+    )
+
+
+
+
+    // Создание каталогов
+    @POST("rp/v1/Templates/Folder/6377865f5f620ebfce9a07cb/Folder")
+    suspend fun createFolderTemplate(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("name") name: String
+    )
+
+    @POST("rp/v1/Reports/Folder/6377865f5f620ebfce9a07cb/Folder")
+    suspend fun createFolderReport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("name") name: String
+    )
+
+    @POST("rp/v1/Exports/Folder/{id}/Folder")
+    suspend fun createFolderExport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("name") name: String
+    )
+
+
+
+    // Скопировать файл в выбранный каталог
+    @POST("rp/v1/Exports/File/{id}/Copy/{folderId}")
+    suspend fun copyFileFromExport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("folderId") folderId: String,
+        @Path("name") name: String
+    )
+
+    @POST("rp/v1/Reports/File/{id}/Copy/{folderId}")
+    suspend fun copyFileFromReport(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("folderId") folderId: String,
+        @Path("name") name: String
+    )
+
+    @POST("rp/v1/Templates/File/{id}/Copy/{folderId}")
+    suspend fun copyFileFromTemplate(
+        @Header("Authorization") authorization: String = Constants.BASIC_AUTH,
+        @Path("folderId") folderId: String,
+        @Path("name") name: String
+    )
 }

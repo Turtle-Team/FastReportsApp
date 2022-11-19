@@ -60,4 +60,8 @@ class TemplateViewModel @Inject constructor(private val fastReportRepository: Fa
     fun deleteFile(item: String) = viewModelScope.launch(Dispatchers.IO) {
         fastReportRepository.deleteFileTemplate(item)
     }
+
+    fun createFolder(name: String) = viewModelScope.launch(Dispatchers.IO){
+        fastReportRepository.createFolderTemplate(name)
+    }
 }

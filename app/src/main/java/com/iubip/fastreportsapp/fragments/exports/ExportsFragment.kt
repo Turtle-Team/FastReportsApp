@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
+import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.databinding.FragmentExportsBinding
 import com.iubip.fastreportsapp.databinding.FragmentReportsBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
@@ -28,7 +29,8 @@ class ExportsFragment : Fragment() {
         onClick = { clickCard(it) },
         deleteFolderClick = { deleteFolder(it) },
         deleteFileClick = { deleteFile(it) },
-        exportFile = {exportFile(it)}
+        exportFile = {exportFile(it)},
+        renameFile = {renameFile(it)}
     )
 
     override fun onCreateView(
@@ -81,5 +83,9 @@ class ExportsFragment : Fragment() {
 
     fun exportFile(item: String){
 
+    }
+
+    fun renameFile(item: String){
+        RenameDialog().show(parentFragmentManager, "Rename file")
     }
 }
