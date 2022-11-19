@@ -15,6 +15,10 @@
     <string name="last_update">Последнее изменение</string>
     <string name="delete">Удалить</string>
     <string name="rename">Переименовать</string>
+    <string name="create_folder">Создать папку</string>
+    <string name="ownload_template">Загрузить шаблон</string>
+    <string name="reate_template">Создать шаблон</string>
+    <string name="download_report">Загрузить отчет</string>
     <string name="copy">Копировать</string>
     <string name="export">Экспортировать</string>
 </resources>

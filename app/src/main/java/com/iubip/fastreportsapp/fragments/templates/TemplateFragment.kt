@@ -7,15 +7,12 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.FragmentTemplateBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TemplateFragment : Fragment() {
@@ -45,8 +42,8 @@ class TemplateFragment : Fragment() {
         observableData()
     }
 
-    private fun observableData() {
-        viewModel.response.observe(viewLifecycleOwner) {
+    private fun observableData(){
+        viewModel.response.observe(viewLifecycleOwner){
             templateAdapter.submitList(it)
         }
     }
@@ -71,6 +68,38 @@ class TemplateFragment : Fragment() {
             viewModel.deleteFile(item)
             delay(500)
             viewModel.getContentFolder()
+        }
+    private fun clickCard(item: BaseItemType.File) {
+        findNavController().navigate(R.id.action_templateFragment_to_folderItemFragment,
+            bundleOf("aaa" to item.id))
+    }
+
+    fun showButtons(value: Boolean, view: View) {
+        if (value) {
+            view.visibility = View.VISIBLE
+            view.alpha = 0f
+            view.translationY = view.height.toFloat()
+            view.animate()
+                .setDuration(200)
+                .translationY(0f)
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator?) {
+                        super.onAnimationEnd(animation)
+                    }
+                }).alpha(1f).start()
+        } else {
+            view.visibility = View.VISIBLE
+            view.alpha = 1f
+            view.translationY = 0f
+            view.animate()
+                .setDuration(200)
+                .translationY(view.height.toFloat())
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator?) {
+                        view.visibility = View.GONE
+                        super.onAnimationEnd(animation)
+                    }
+                }).alpha(0f).start()
         }
     }
 }
