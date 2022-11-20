@@ -35,7 +35,8 @@ class TemplateFragment : Fragment() {
         deleteFolderClick = { deleteFolder(it) },
         deleteFileClick = { deleteFile(it) },
         exportFile = { exportFile(it) },
-        renameFile = { renameFile(it) }
+        renameFile = { renameFile(it) },
+        startWebView = {startWebView()}
     )
 
     private lateinit var preferences: PreferencesStore
@@ -113,5 +114,9 @@ class TemplateFragment : Fragment() {
     fun renameFile(item: String) {
         RenameDialog.name = item
         RenameDialog().show(parentFragmentManager, "Rename file")
+    }
+
+    fun startWebView(){
+        findNavController().navigate(R.id.action_templateFragment_to_webViewFragment)
     }
 }

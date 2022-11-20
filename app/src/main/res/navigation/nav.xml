@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_templateFragment_to_folderItemFragment"
             app:destination="@id/folderItemFragment" />
+        <action
+            android:id="@+id/action_templateFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/reportsFragment"
@@ -22,6 +25,9 @@
         <action
             android:id="@+id/action_reportsFragment_to_reportFolderItemFragment"
             app:destination="@id/reportFolderItemFragment" />
+        <action
+            android:id="@+id/action_reportsFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/exportsFragment"
@@ -31,6 +37,9 @@
         <action
             android:id="@+id/action_exportsFragment_to_exportFolderItemFragment"
             app:destination="@id/exportFolderItemFragment" />
+        <action
+            android:id="@+id/action_exportsFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/additionallyFragment"
@@ -66,15 +75,32 @@
         android:id="@+id/folderItemFragment"
         android:name="com.iubip.fastreportsapp.fragments.folderitem.templates.FolderItemFragment"
         android:label="Каталог"
-        tools:layout="@layout/fragment_folder_item" />
+        tools:layout="@layout/fragment_folder_item" >
+        <action
+            android:id="@+id/action_folderItemFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/reportFolderItemFragment"
         android:name="com.iubip.fastreportsapp.fragments.folderitem.reports.ReportFolderItemFragment"
         android:label="Каталог"
-        tools:layout="@layout/fragment_report_folder_item" />
+        tools:layout="@layout/fragment_report_folder_item" >
+        <action
+            android:id="@+id/action_reportFolderItemFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exportFolderItemFragment"
         android:name="com.iubip.fastreportsapp.fragments.folderitem.exports.ExportFolderItemFragment"
         android:label="Каталог"
-        tools:layout="@layout/fragment_export_folder_item" />
+        tools:layout="@layout/fragment_export_folder_item" >
+        <action
+            android:id="@+id/action_exportFolderItemFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.iubip.fastreportsapp.WebViewFragment"
+        android:label="Файл"
+        tools:layout="@layout/fragment_web_view" />
 </navigation>

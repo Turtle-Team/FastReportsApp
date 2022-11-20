@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.databinding.FragmentFolderItemBinding
@@ -31,7 +32,8 @@ class ReportFolderItemFragment : Fragment() {
         deleteFolderClick = {deleteFolder(it)},
         deleteFileClick = { deleteFile(it) },
         exportFile = {exportFile(it)},
-        renameFile = {renameFile(it)}
+        renameFile = {renameFile(it)},
+        startWebView = {startWebView()}
     )
 
     override fun onCreateView(
@@ -86,5 +88,9 @@ class ReportFolderItemFragment : Fragment() {
 
     fun renameFile(item: String){
         RenameDialog().show(parentFragmentManager, "Rename file")
+    }
+
+    fun startWebView(){
+        findNavController().navigate(R.id.action_exportFolderItemFragment_to_webViewFragment)
     }
 }

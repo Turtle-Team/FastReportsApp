@@ -32,7 +32,8 @@ class ExportsFragment : Fragment() {
         deleteFolderClick = { deleteFolder(it) },
         deleteFileClick = { deleteFile(it) },
         exportFile = {exportFile(it)},
-        renameFile = {renameFile(it)}
+        renameFile = {renameFile(it)},
+        startWebView = {startWebView()}
     )
 
     override fun onCreateView(
@@ -89,5 +90,9 @@ class ExportsFragment : Fragment() {
     fun renameFile(item: String) {
         RenameDialogExport.nameExports = item
         RenameDialogExport().show(parentFragmentManager, "Rename file")
+    }
+
+    fun startWebView(){
+        findNavController().navigate(R.id.action_exportsFragment_to_webViewFragment)
     }
 }

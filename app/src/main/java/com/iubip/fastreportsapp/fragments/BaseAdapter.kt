@@ -1,18 +1,17 @@
 package com.iubip.fastreportsapp.fragments
 
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.databinding.ItemBaseBinding
-import com.iubip.fastreportsapp.repository.FastReportRepository
 
 class BaseAdapter(
     private val onClick: (item: BaseItemType.File) -> Unit,
@@ -20,6 +19,7 @@ class BaseAdapter(
     private val deleteFileClick: (item: String) -> Unit,
     private val exportFile: (item: BaseItemType.Folder) -> Unit,
     private val renameFile: (item: String) -> Unit,
+    private val startWebView: () -> Unit,
 ) : ListAdapter<BaseItemType, RecyclerView.ViewHolder>(Diffutils()) {
 
     class FileViewHolder(
@@ -27,6 +27,7 @@ class BaseAdapter(
         private val deleteFileClick: (item: String) -> Unit,
         private val exportFile: (item: BaseItemType.Folder) -> Unit,
         private val renameFile: (item: String) -> Unit,
+        private val startWebView: () -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @RequiresApi(Build.VERSION_CODES.O)
@@ -37,6 +38,11 @@ class BaseAdapter(
             binding.itemCard.setOnLongClickListener {
                 showPopup(binding.itemCard, item)
                 return@setOnLongClickListener true
+            }
+
+            binding.itemCard.setOnClickListener {
+                startWebView()
+                Log.e("WEB", "YES")
             }
 
             val date = item.editedTime
@@ -54,7 +60,6 @@ class BaseAdapter(
                         renameFile(item1.id)
                     }
                     R.id.exportFile -> {
-                        Toast.makeText(view.context, "export", Toast.LENGTH_SHORT).show()
                         exportFile(item1)
                     }
                     R.id.copyFile -> {
@@ -101,11 +106,9 @@ class BaseAdapter(
             popup.setOnMenuItemClickListener { item: MenuItem? ->
                 when (item?.itemId) {
                     R.id.deleteFile -> {
-                        Toast.makeText(view.context, "delete", Toast.LENGTH_SHORT).show()
                         deleteFolderClick(item1)
                     }
                     R.id.renameFile -> {
-                        Toast.makeText(view.context, "rename", Toast.LENGTH_SHORT).show()
                     }
                 }
                 true
@@ -130,7 +133,7 @@ class BaseAdapter(
                     parent,
                     false
                 ),
-                deleteFileClick, exportFile, renameFile
+                deleteFileClick, exportFile, renameFile, startWebView
             )
             else -> throw java.lang.IllegalArgumentException("Invalid ViewType Provided")
         }

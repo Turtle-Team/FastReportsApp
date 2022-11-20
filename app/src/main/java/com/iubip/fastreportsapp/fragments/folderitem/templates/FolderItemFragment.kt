@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.alerts.CreateFolderDialog
 import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.databinding.FragmentFolderItemBinding
@@ -29,7 +30,8 @@ class FolderItemFragment : Fragment() {
         deleteFolderClick = { deleteFolder(it) },
         deleteFileClick = { deleteFile(it) },
         exportFile = { exportFile(it) },
-        renameFile = { renameFile(it) }
+        renameFile = { renameFile(it) },
+        startWebView = {startWebView()}
     )
 
     private lateinit var preferences: PreferencesStore
@@ -101,5 +103,9 @@ class FolderItemFragment : Fragment() {
 
     fun renameFile(item: String) {
         RenameDialog().show(parentFragmentManager, "Rename file")
+    }
+
+    fun startWebView(){
+//        findNavController().navigate(R.id.)
     }
 }
