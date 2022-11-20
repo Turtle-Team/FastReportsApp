@@ -22,6 +22,6 @@
 
         <include
             android:id="@+id/floating_button"
-            layout="@layout/button_popup" />
+            layout="@layout/button_popup_export" />
     </FrameLayout>
 </LinearLayout>

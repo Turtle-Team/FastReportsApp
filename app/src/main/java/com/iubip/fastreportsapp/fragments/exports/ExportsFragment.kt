@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iubip.fastreportsapp.R
+import com.iubip.fastreportsapp.alerts.CreateFolderDialog
 import com.iubip.fastreportsapp.alerts.FolderExportDialog
 import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.alerts.RenameDialogExport
@@ -18,6 +20,7 @@ import com.iubip.fastreportsapp.databinding.FragmentReportsBinding
 import com.iubip.fastreportsapp.fragments.BaseAdapter
 import com.iubip.fastreportsapp.fragments.BaseItemType
 import com.iubip.fastreportsapp.fragments.reports.ReportsViewModel
+import com.iubip.fastreportsapp.utils.Animations
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -43,6 +46,18 @@ class ExportsFragment : Fragment() {
         binding = FragmentExportsBinding.inflate(inflater, container, false)
 
         viewModel.getContentExport()
+
+        binding.floatingButton.popupButton.setOnClickListener {
+            if (binding.floatingButton.createFolderButton.isVisible) {
+                Animations().showButtons(false, binding.floatingButton.createFolderButton)
+            } else {
+                Animations().showButtons(true, binding.floatingButton.createFolderButton)
+
+                binding.floatingButton.createFolderButton.setOnClickListener {
+                    CreateFolderDialog().show(parentFragmentManager, "Create Folder")
+                }
+            }
+        }
 
         observableData()
 
