@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     tools:context=".fragments.additionally.AdditionallyFragment">
 
     <TextView
@@ -21,28 +19,11 @@
 
     <Button
         android:id="@+id/groupButton"
-add-create-folders
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="@string/groups" />
-
-    <Button
-        android:id="@+id/userButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="@string/users" />
-
-    <Button
-        android:id="@+id/apikeyButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="48dp"
         android:text="@string/groups"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -53,7 +34,6 @@ add-create-folders
         android:layout_marginTop="20dp"
         android:text="@string/users"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupButton" />
 
@@ -62,16 +42,9 @@ add-create-folders
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
-
         android:text="@string/apikeys"
-/>
-
-
-    <Button
-        android:id="@+id/downloadButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Скачать" />
-</LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

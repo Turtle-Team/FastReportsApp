@@ -37,34 +37,34 @@ class UsersFragment : Fragment() {
 
 //        binding.webView.loadUrl("https://stackoverflow.com/questions/39939121/android-webview-add-header-to-http-request", )
 
-        val headers: HashMap<String, String> = HashMap<String, String>()
-
-        headers.put("Authorization", Constants.BASIC_AUTH)
-        headers.put("Host", "fastreport.cloud")
-        headers.put("Content-Type", "text/xml")
-
-        binding.webView.settings.javaScriptEnabled = true
-        binding.webView.loadUrl("https://fastreport.cloud/download/t/63792f985f620ebfce9a32a1",headers)
-
-
-        val headers: HashMap<String, String> = HashMap<String, String>()
-        headers["Authorization"] = Constants.BASIC_AUTH
-        headers["Host"] = "fastreport.cloud"
-
-
-        binding.webView.webChromeClient = WebChromeClient()
-        binding.webView.settings.javaScriptEnabled = true
-
-        binding.webView.webViewClient = object : WebViewClient(){
-            override fun shouldOverrideUrlLoading(
-                view: WebView?,
-                request: WebResourceRequest?
-            ): Boolean {
-                view?.loadUrl("https://fastreport.cloud/download/t/6379589b5f620ebfce9a4358", headers)
-                return true
-            }
-        }
-        binding.webView.loadUrl("https://fastreport.cloud/download/t/6379589b5f620ebfce9a4358", headers)
+//        val headers: HashMap<String, String> = HashMap<String, String>()
+//
+//        headers.put("Authorization", Constants.BASIC_AUTH)
+//        headers.put("Host", "fastreport.cloud")
+//        headers.put("Content-Type", "text/xml")
+//
+//        binding.webView.settings.javaScriptEnabled = true
+//        binding.webView.loadUrl("https://fastreport.cloud/download/t/63792f985f620ebfce9a32a1",headers)
+//
+//
+//        val headers: HashMap<String, String> = HashMap<String, String>()
+//        headers["Authorization"] = Constants.BASIC_AUTH
+//        headers["Host"] = "fastreport.cloud"
+//
+//
+//        binding.webView.webChromeClient = WebChromeClient()
+//        binding.webView.settings.javaScriptEnabled = true
+//
+//        binding.webView.webViewClient = object : WebViewClient(){
+//            override fun shouldOverrideUrlLoading(
+//                view: WebView?,
+//                request: WebResourceRequest?
+//            ): Boolean {
+//                view?.loadUrl("https://fastreport.cloud/download/t/6379589b5f620ebfce9a4358", headers)
+//                return true
+//            }
+//        }
+//        binding.webView.loadUrl("https://fastreport.cloud/download/t/6379589b5f620ebfce9a4358", headers)
 
 
 
