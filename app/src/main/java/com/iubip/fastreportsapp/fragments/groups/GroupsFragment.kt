@@ -24,7 +24,7 @@ class GroupsFragment : Fragment() {
     ): View {
         binding = FragmentGroupsBinding.inflate(inflater, container, false)
 
-        viewModel.getContentGroups()
+
 
         observableData()
 
@@ -33,7 +33,7 @@ class GroupsFragment : Fragment() {
 
     fun observableData(){
         viewModel.groups.observe(viewLifecycleOwner){
-            binding.textGroups.text = it.toString()
+//            binding.textGroups.text = it.toString()
         }
     }
 }
