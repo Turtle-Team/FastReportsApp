@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.iubip.fastreportsapp.R
 import com.iubip.fastreportsapp.alerts.CreateFolderDialog
 import com.iubip.fastreportsapp.alerts.RenameDialog
 import com.iubip.fastreportsapp.databinding.FragmentFolderItemBinding
@@ -106,6 +107,6 @@ class FolderItemFragment : Fragment() {
     }
 
     fun startWebView(){
-//        findNavController().navigate(R.id.)
+        findNavController().navigate(R.id.action_folderItemFragment_to_webViewFragment)
     }
 }
